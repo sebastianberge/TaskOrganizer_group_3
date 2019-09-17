@@ -1,16 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Demo of GUI</title>
-</head>
-<body>
-
-	<div id="message"><p>Waiting for server data.</p></div>
-	<div id="newtask"><button type="button" disabled>New task</button></div>
-	<div id="tasks"></div>
-    
-</body>
-</html>
+<div id="message"><p>Found 3 tasks.</p></div>
+<div id="newtask"><button type="button" disabled="">New task</button></div>
+<div id="tasks">
+    <table>
+        <thead>
+            <tr><th>Task</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+            <tr id="3">
+                <td>Wash windows</td>
+                <td>ACTIVE</td>
+                <td>
+                    <select>
+                        <option value="0" selected="">&lt;Modify&gt;</option>
+                        <option value="WAITING">WAITING</option>
+                        <option value="ACTIVE" disabled="">ACTIVE</option>
+                        <option value="DONE">DONE</option>
+                    </select>
+                </td>
+                <td><button type="button">Remove</button></td>
+            </tr>
+            <tr id="2">
+                <td>Clean floor</td>
+                <td>DONE</td>
+                <td>
+                    <select>
+                        <option value="0" selected="">&lt;Modify&gt;</option>
+                        <option value="WAITING">WAITING</option>
+                        <option value="ACTIVE" disabled="">ACTIVE</option>
+                        <option value="DONE">DONE</option>
+                    </select>
+                </td>
+                <td><button type="button">Remove</button></td>
+            </tr>
+            <tr id="1">
+                <td>Paint roof</td>
+                <td>WAITING</td><td>
+                <td>
+                    <select>
+                        <option value="0" selected="">&lt;Modify&gt;</option>
+                        <option value="WAITING">WAITING</option>
+                        <option value="ACTIVE" disabled="">ACTIVE</option>
+                        <option value="DONE">DONE</option>
+                    </select>
+                </td>
+                <td><button type="button">Remove</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
