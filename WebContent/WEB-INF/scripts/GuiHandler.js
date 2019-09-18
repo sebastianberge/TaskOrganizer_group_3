@@ -8,24 +8,22 @@ const tasks = [
     {"id":3,"title":"Wash windows","status":"ACTIVE"}
 ]
 
-
-
 gui.allstatuses = statuses
 tasks.forEach((task) => {gui.showTask(task)})
 
 
 gui.deleteTaskCallback = (id) => {
-    console.log(`User has approved the deletion of task with id ${id}.`)
+    console.log(`User has approved the deletion of task with id ${id}.`);
     gui.removeTask(id)
 }   
 
 gui.newStatusCallback = (id,newStatus) => {
-    console.log(`User has approved to change the status of task with id ${id} to ${newStatus}.`)
+    console.log(`User has approved to change the status of task with id ${id} to ${newStatus}.`);
     gui.updateTask({"id":id,"status":newStatus})
 }
 
 taskbox.onsubmit = (task) => {
-    console.log(`New task '${task.title}' with initial status ${task.status} is added by the user.`)
+    console.log(`New task '${task.title}' with initial status ${task.status} is added by the user.`);
     gui.showTask(task)
     taskbox.close()
 }
@@ -56,4 +54,3 @@ function removeTask(){
 function noTask(){
 	
 }
-
