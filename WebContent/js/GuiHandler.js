@@ -27,19 +27,19 @@ class GuiHandler{
 		if(tasksDiv.getElementsByTagName('table').length == 0){
 				
 			var output = '';
-			for(var i in task){
+			for(var i in tasks){
 			//console.log(tasksDiv.getElementsByTagName('table').length + "if")
 			
 			output  += " <tbody><tr id=\"" + 
-				task[i].id + "\">"+
-                "<td>" + task[i].title + "</td>" +
-                "<td>" + task[i].status + "</td>" +
+				tasks[i].id + "\">"+
+                "<td>" + tasks[i].title + "</td>" +
+                "<td>" + tasks[i].status + "</td>" +
                 "<td>" +
                     "<select>" +
                        " <option value=\"0\" selected=\"\">&lt;Modify&gt;</option>" + stringOptions + 
                     "</select>" +
                 "</td>" + 
-                "<td><button type=\"button\">Remove</button></td>" 
+                "<td><button type=\"button\">Remove</button></td>" 	
 			}
 				tasksDiv.innerHTML = "<table><thead><tr><th>Task</th><th>Status</th></tr></thead> " + output + " </tr></tbody></table>";
 		}else{
