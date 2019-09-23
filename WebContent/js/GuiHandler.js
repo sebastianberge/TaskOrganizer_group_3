@@ -29,7 +29,8 @@ class GuiHandler{
 		for(status in this.allstatuses){
 				stringOptions += "<option value=\"" + this.allstatuses[status] +"\">" + this.allstatuses[status] + "</option>";
         }
-		if(tasksDiv.getElementsByTagName('table').length == 0){			
+		if(tasksDiv.getElementsByTagName('table').length == 0){
+			console.log(task.id + " " + task.title + " " +task.status);
 			tasksDiv.innerHTML = "<table><thead><tr><th>Task</th><th>Status</th></tr></thead> <tbody><tr id=\"" + task.id + "\">"+
                 "<td>" + task.title + "</td>" +
                 "<td>" + task.status + "</td>" +
@@ -41,6 +42,8 @@ class GuiHandler{
                 "<td><button type=\"button\">Remove</button></td>" +
            " </tr></tbody></table>";
 		}else{
+			console.log(task.id + " " + task.title + " " + task.status);
+
 			const nyTask = document.createElement("tr");
 			nyTask.setAttribute("id", task.id);
 			nyTask.innerHTML = "<td>" + task.title + "</td>" +
@@ -67,6 +70,7 @@ class GuiHandler{
 		if(task.title != null){
 			node.getElementsByTagName('td')[0].innerHTML = task.title;
 		}
+		console.log('id er: ' + task.id);
 		const select = document.getElementById(task.id).getElementsByTagName('select')[0];
 		const status = select.options[select.selectedIndex].value;
 		if(status != 0){
@@ -77,9 +81,10 @@ class GuiHandler{
 	}
 	
 	removeTask(id) {
-	      let task = document.getElementById(id);
-	      if (task != null) {
-	        task.parentElement.removeChild(task);
+		console.log("touched remove")
+	    let task = document.getElementById(id);
+	    if (task != null) {
+	    		task.parentElement.removeChild(task);
 	      }
 	}
 	
