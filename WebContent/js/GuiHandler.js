@@ -25,11 +25,15 @@ class GuiHandler{
 			
         }
 		if(tasksDiv.getElementsByTagName('table').length == 0){
-				console.log(tasksDiv.getElementsByTagName('table').length + "if")
+				
+			var output = '';
+			for(var i in task){
+			//console.log(tasksDiv.getElementsByTagName('table').length + "if")
 			
-			tasksDiv.innerHTML = "<table><thead><tr><th>Task</th><th>Status</th></tr></thead> <tbody><tr id=\"" + task.id + "\">"+
-                "<td>" + task.title + "</td>" +
-                "<td>" + task.status + "</td>" +
+			output  += "<table><thead><tr><th>Task</th><th>Status</th></tr></thead> <tbody><tr id=\"" + 
+				task[i].id + "\">"+
+                "<td>" + task[i].title + "</td>" +
+                "<td>" + task[i].status + "</td>" +
                 "<td>" +
                     "<select>" +
                        " <option value=\"0\" selected=\"\">&lt;Modify&gt;</option>" + stringOptions + 
@@ -37,6 +41,8 @@ class GuiHandler{
                 "</td>" + 
                 "<td><button type=\"button\">Remove</button></td>" +
            " </tr></tbody></table>"
+			}
+				tasksDiv.innerHTML = output;
 		}else{
 			const newTask = document.createElement("tr")
 			newTask.setAttribute("id", task.id)
@@ -73,8 +79,8 @@ const tasks = [
 ]
 
 gui.allstatuses = statuses
-
 tasks.forEach((task) => {gui.showTask(task)})
+
 
 
 
