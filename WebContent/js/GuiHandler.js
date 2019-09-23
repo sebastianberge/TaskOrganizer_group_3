@@ -62,8 +62,7 @@ class GuiHandler{
 		select.addEventListener('change', function(){
 			gui.updateTask(task);
 		})
-		
-	}
+			}
 	
 	updateTask(task){
 		const node = document.getElementById(task.id);
@@ -104,5 +103,9 @@ class GuiHandler{
   tasks.forEach(task => {
     gui.showTask(task);
   });
+  
+  //gui.removeTask(1);
+  //gui.removeTask(3);
+  //gui.removeTask(2);
 
 }
