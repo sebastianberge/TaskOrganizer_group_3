@@ -30,7 +30,7 @@ class GuiHandler{
 			for(var i in task){
 			//console.log(tasksDiv.getElementsByTagName('table').length + "if")
 			
-			output  += "<table><thead><tr><th>Task</th><th>Status</th></tr></thead> <tbody><tr id=\"" + 
+			output  += " <tbody><tr id=\"" + 
 				task[i].id + "\">"+
                 "<td>" + task[i].title + "</td>" +
                 "<td>" + task[i].status + "</td>" +
@@ -39,10 +39,9 @@ class GuiHandler{
                        " <option value=\"0\" selected=\"\">&lt;Modify&gt;</option>" + stringOptions + 
                     "</select>" +
                 "</td>" + 
-                "<td><button type=\"button\">Remove</button></td>" +
-           " </tr></tbody></table>"
+                "<td><button type=\"button\">Remove</button></td>" 
 			}
-				tasksDiv.innerHTML = output;
+				tasksDiv.innerHTML = "<table><thead><tr><th>Task</th><th>Status</th></tr></thead> " + output + " </tr></tbody></table>";
 		}else{
 			const newTask = document.createElement("tr")
 			newTask.setAttribute("id", task.id)
