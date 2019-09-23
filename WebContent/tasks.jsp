@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/GuiHandler.js" defer></script>
-<!--<script type="text/javascript" src="js/addTasks.js"></script> -->
 <meta charset="ISO-8859-1">
 <title>Task Organizer</title>
 </head>

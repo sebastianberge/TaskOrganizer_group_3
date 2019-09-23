@@ -2,18 +2,23 @@
 {
 	
 class GuiHandler{
+	
 	constructor (allstatuses){
 		this.allstatuses = allstatuses;
 	}
+	
 	set allstatuses(allstatuses){
 		this._allstatuses = allstatuses;
 	}
+	
 	set deleteTaskCall(task){
 		
 	}
+	
 	set deleteTaskCall(task){
 		
 	}
+	
 	get allstatuses(){
 		return this._allstatuses;
 	}
@@ -22,12 +27,7 @@ class GuiHandler{
 		const tasksDiv = document.getElementById('tasks');
 		let stringOptions;
 		for(status in this.allstatuses){
-			if(task.status == this.allstatuses[status]){
-				stringOptions += "<option value=\"" + this.allstatuses[status] +"\" disabled>" + this.allstatuses[status] + "</option>";
-			}else{
 				stringOptions += "<option value=\"" + this.allstatuses[status] +"\">" + this.allstatuses[status] + "</option>";
-			}
-			
         }
 		if(tasksDiv.getElementsByTagName('table').length == 0){			
 			tasksDiv.innerHTML = "<table><thead><tr><th>Task</th><th>Status</th></tr></thead> <tbody><tr id=\"" + task.id + "\">"+
@@ -95,7 +95,7 @@ class GuiHandler{
 	    { id: 3, title: "Wash windows", status: "ACTIVE" }
 	  ];
   const gui = new GuiHandler(statuses);
-
+  
   tasks.forEach(task => {
     gui.showTask(task);
   });
