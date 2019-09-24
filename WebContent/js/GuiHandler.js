@@ -31,15 +31,23 @@ class GuiHandler{
         }
 		if(tasksDiv.getElementsByTagName('table').length == 0){
 			console.log(task.id + " " + task.title + " " +task.status);
-			tasksDiv.innerHTML = "<table><thead><tr><th>Task</th><th>Status</th></tr></thead> <tbody><tr id=\"" + task.id + "\">"+
-                "<td>" + task.title + "</td>" +
-                "<td>" + task.status + "</td>" +
-                "<td>" +
+			tasksDiv.innerHTML = "<table>" +
+					"<thead>" +
+					"<tr>" +
+					"<th>Task</th>" +
+					"<th>Status</th>" +
+					"</tr>" +
+					"</thead>" +
+					"<tbody>" +
+					"<tr id=\"" + task.id + "\">"+
+					"<td>" + task.title + "</td>" +
+					"<td>" + task.status + "</td>" +
+					"<td>" +
                     "<select>" +
                        " <option value=\"0\" selected=\"\">&lt;Modify&gt;</option>" + stringOptions + 
                     "</select>" +
                 "</td>" + 
-                "<td><button type=\"button\">Remove</button></td>" +
+                "<td><button type=\"button\" >Remove</button></td>" +
            " </tr></tbody></table>";
 		}else{
 			console.log(task.id + " " + task.title + " " + task.status);
@@ -58,11 +66,17 @@ class GuiHandler{
 			tasksDiv.getElementsByTagName('tbody')[0].appendChild(nyTask);
 		}
 
+		//Change status function in use
 		const select = document.getElementById(task.id).getElementsByTagName('select')[0];
 		select.addEventListener('change', function(){
 			gui.updateTask(task);
 		})
-			}
+		//Delete function in use
+		const deleteButton = document.getElementById(task.id).getElementsByTagName('button')[0];
+		deleteButton.addEventListener('click', function(){
+			gui.removeTask(task.id);
+		})
+	}
 	
 	updateTask(task){
 		const node = document.getElementById(task.id);
@@ -79,8 +93,8 @@ class GuiHandler{
 		
 	}
 	
-	removeTask(id) {
-		console.log("touched remove")
+	 removeTask(id) {
+		console.log("touched remove");
 	    let task = document.getElementById(id);
 	    if (task != null) {
 	    		task.parentElement.removeChild(task);
@@ -104,8 +118,8 @@ class GuiHandler{
     gui.showTask(task);
   });
   
-  //gui.removeTask(1);
-  //gui.removeTask(3);
-  //gui.removeTask(2);
+  // gui.removeTask(1);
+  // gui.removeTask(3);
+  // gui.removeTask(2);
 
 }
