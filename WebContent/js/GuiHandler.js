@@ -5,34 +5,43 @@ class GuiHandler{
 	
 	constructor (allstatuses){
 		this.allstatuses = allstatuses;
-	//	this.deleteTaskCallback = deleteTaskCallback;
-	//	this.newStatusCallback = newStatusCallback;
+	// this.deleteTaskCallback = deleteTaskCallback;
+	// this.newStatusCallback = newStatusCallback;
 		}
 	
+	/*
+	 * to set a list of all possible task state, i.e. the values that can be
+	 * chosen with the HTML select elements.
+	 */
 	set allstatuses(allstatuses){
 		this._allstatuses = allstatuses;
 	}
 	
+	/*
+	 * to set a list of all possible task state, i.e. the values that can be
+	 * chosen with the HTML select elements.
+	 */
 	get allstatuses(){
 		return this._allstatuses;
 	}
-	
+	/*
+	 * Setter that adds a callback to run when a Remove button is clicked.
+	 */
 	set deleteTaskCallback(id){
-		this.removeTask(id);
-		console.log("deleteTaskCallback setter 'function' activated, with ID: " + id);
+		console.log("User has approved the deletion of task with id " + id + ".");		
+		console.log("Observer, task with id " + id + " is not removed from the view!")
+		//this.removeTask(id);
 	}
 	
-	get deleteTaskCallback(){
-		console.log("deleteTaskCallback getter 'function' activated, with ID: " + id);	
-	}
 	
+	/*
+	 * Setter that adds a callback to run when an Modify select element is
+	 * changed.
+	 */
 	set newStatusCallback(task){
-		
+		console.log("newStatusCallback setter 'function' activated, with task: " + task);
 	}
 	
-	get newStatusCallback() {
-		
-	}
 	
 	
 	
@@ -41,10 +50,11 @@ class GuiHandler{
 	 * not already exist in the view.
 	 */
 	showTask(task){
-		
+		// ---------Solution for displaying nr of tasks for now----
 		const messageDiv = document.getElementById('message');
 		messageDiv.innerHTML = "Found " + task.id + " tasks";
 		const tasksDiv = document.getElementById('tasks');
+		// ---------------------------------------------------------
 		let stringOptions;
 		for(status in this.allstatuses){
 			// Makes it so that the status of the task that is chosen is
@@ -127,7 +137,13 @@ class GuiHandler{
 		// Delete function in use
 		const deleteButton = document.getElementById(task.id).getElementsByTagName('button')[0];
 		deleteButton.addEventListener('click', function(){
-			gui.removeTask(task.id);
+			// This is the confirm window
+			let choice = confirm("Delete task '" + task.title + "'?");
+			if(choice){ 
+				gui.deleteTaskCallback = task.id;
+			} else {
+				console.log("You just cancelled to delete a task!");
+			}
 		});
 	}
 	
@@ -163,15 +179,9 @@ class GuiHandler{
 	 * view.
 	 */
 	 removeTask(id) {
-		// This is the confirm window
-		let choice = confirm("Delete task '" + tasks[id-1].title + "'?");
-		if(choice){ 
-		
-			let task = document.getElementById(id); if (task != null) {
-			task.parentElement.removeChild(task); }
-			console.log("Task was removed");
-		} else {
-			console.log("You just cancelled to delete a task!");
+		let task = document.getElementById(id); 
+		if (task != null) {
+			task.parentElement.removeChild(task); 
 		}
 	}
 	 
@@ -196,12 +206,5 @@ class GuiHandler{
     gui.showTask(task);
   });
   
- // gui.updateTask({"id":1,"title":"Paint roof","status":"ACTIVE"})
 
- // gui.removeTask(3)
-
- // gui.deleteTaskCallback = (id) => {console.log(`User has approved the
-	// deletion of task with id ${id}.`)}
- // gui.deleteTaskCallback = (id) => {console.log(`Observer, task with id
-	// ${id} is not removed from the view!`)}
 }
