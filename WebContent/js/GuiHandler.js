@@ -30,7 +30,7 @@ class GuiHandler{
 	set deleteTaskCallback(id){
 		console.log("User has approved the deletion of task with id " + id + ".");		
 		console.log("Observer, task with id " + id + " is not removed from the view!")
-		//this.removeTask(id);
+		// this.removeTask(id);
 	}
 	
 	
@@ -39,7 +39,8 @@ class GuiHandler{
 	 * changed.
 	 */
 	set newStatusCallback(task){
-		console.log("newStatusCallback setter 'function' activated, with task: " + task);
+		console.log("User has approved to change the status of task with id " + task.id + "to " + task.status);
+		console.log("Observer, task with id " + task.id + "is not set to " + task.status + " in the view!");
 	}
 	
 	
@@ -130,9 +131,20 @@ class GuiHandler{
 		}
 
 		// Change status function in use
+		
 		const select = document.getElementById(task.id).getElementsByTagName('select')[0];
 		select.addEventListener('change', function(){
-			gui.updateTask(task);
+			const status = select.options[select.selectedIndex].value;	
+			console.log(status);
+			let choice = confirm("Set '" + task.title + "' to "+ status + "?");
+			if(choice){ 
+				task.status = status;
+				gui.newStatusCallback = task;
+			} else {
+				console.log("You just cancelled to update a task status!");
+			}
+		// gui.updateTask(task);
+		
 		});
 		// Delete function in use
 		const deleteButton = document.getElementById(task.id).getElementsByTagName('button')[0];
@@ -152,27 +164,20 @@ class GuiHandler{
 	 * already exist in the view.
 	 */
 	updateTask(task){
-		// UNDER PROGRESS
 		const node = document.getElementById(task.id);
 		if(task.title != null){
 			node.getElementsByTagName('td')[0].innerHTML = task.title;
 		}
 		console.log('ID er: ' + task.id);
 		const select = document.getElementById(task.id).getElementsByTagName('select')[0];
-		const status = select.options[select.selectedIndex].value;
-		
-		// This is the confirm window
-		let choice = confirm("Set '" + task.title + "' to " + status + "?");
-		if(choice){
+		const status = select.options[select.selectedIndex].value;		
 			if(status != 0){
 				node.getElementsByTagName('td')[1].innerHTML = status;
 			}
 			node.getElementsByTagName('select')[0].selectedIndex = 0;
 			console.log(task.status);
-		}else{
-			console.log("You just cancelled the update!");
 		}
-		}
+		
 	
 	/*
 	 * Removes task from the view. A task with the given id must exist in the
