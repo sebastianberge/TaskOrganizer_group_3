@@ -5,24 +5,36 @@ class GuiHandler{
 	
 	constructor (allstatuses){
 		this.allstatuses = allstatuses;
-		
-	}
+	//	this.deleteTaskCallback = deleteTaskCallback;
+	//	this.newStatusCallback = newStatusCallback;
+		}
 	
 	set allstatuses(allstatuses){
 		this._allstatuses = allstatuses;
 	}
 	
-	set deleteTaskCallback(id){
-		console.log("set deleteTaskCallback");
-	}
-	
-	get deleteTaskCallback(){
-		console.log("get deleteTaskCallback");
-	}
-	
 	get allstatuses(){
 		return this._allstatuses;
 	}
+	
+	set deleteTaskCallback(id){
+		this.removeTask(id);
+		console.log("deleteTaskCallback setter 'function' activated, with ID: " + id);
+	}
+	
+	get deleteTaskCallback(){
+		console.log("deleteTaskCallback getter 'function' activated, with ID: " + id);	
+	}
+	
+	set newStatusCallback(task){
+		
+	}
+	
+	get newStatusCallback() {
+		
+	}
+	
+	
 	
 	/*
 	 * Display a new task at the the top of the viewed list. The id of task must
@@ -80,9 +92,9 @@ class GuiHandler{
 			 */
 			console.log(task.id + " " + task.title + " " + task.status);
 
-			const nyTask = document.createElement("tr");
-			nyTask.setAttribute("id", task.id);
-			nyTask.innerHTML = 
+			const newTask = document.createElement("tr");
+			newTask.setAttribute("id", task.id);
+			newTask.innerHTML = 
 				"<td>" + 
 					task.title + 
 				"</td>" +
@@ -90,29 +102,30 @@ class GuiHandler{
 					task.status + 
 				"</td>" +
 				"<td>" +
-                "<select>" +
-                   "<option value=\"0\" selected=\"\">" +
-                   		"&lt;Modify&gt;" +
-                   "</option>" + stringOptions + 
-                "</select>" +
-            "</td>" + 
-            "<td>" +
-            	"<button type=\"button\">Remove</button>" +
-            "</td>";
+                	"<select>" +
+	                   "<option value=\"0\" selected=\"\">" +
+	                   		"&lt;Modify&gt;" +
+	                   "</option>" + 
+	                   		stringOptions + 
+	                 "</select>" +
+	            "</td>" + 
+	            "<td>" +
+	            	"<button type=\"button\">Remove</button>" +
+	            "</td>";
             const list = tasksDiv;
-			tasksDiv.getElementsByTagName('tbody')[0].appendChild(nyTask);
+			tasksDiv.getElementsByTagName('tbody')[0].appendChild(newTask);
 		}
 
 		// Change status function in use
 		const select = document.getElementById(task.id).getElementsByTagName('select')[0];
 		select.addEventListener('change', function(){
 			gui.updateTask(task);
-		})
+		});
 		// Delete function in use
 		const deleteButton = document.getElementById(task.id).getElementsByTagName('button')[0];
 		deleteButton.addEventListener('click', function(){
 			gui.removeTask(task.id);
-		})
+		});
 	}
 	
 	/*
@@ -150,8 +163,9 @@ class GuiHandler{
 		// This is the confirm window
 		let choice = confirm("Delete task '" + tasks[id-1].title + "'?");
 		if(choice){ 
-			 let task = document.getElementById(id); if (task != null) {
-			 task.parentElement.removeChild(task); }
+		
+			let task = document.getElementById(id); if (task != null) {
+			task.parentElement.removeChild(task); }
 			console.log("Task was removed");
 		} else {
 			console.log("You just cancelled to delete a task!");
