@@ -47,24 +47,32 @@ class GuiHandler{
 		 */
 		if(tasksDiv.getElementsByTagName('table').length == 0){
 			console.log(task.id + " " + task.title + " " +task.status);
-			tasksDiv.innerHTML = "<table>" +
-					"<thead>" +
-					"<tr>" +
-					"<th>Task</th>" +
-					"<th>Status</th>" +
-					"</tr>" +
-					"</thead>" +
-					"<tbody>" +
-					"<tr id=\"" + task.id + "\">"+
-					"<td>" + task.title + "</td>" +
-					"<td>" + task.status + "</td>" +
-					"<td>" +
-                    "<select>" +
-                       " <option value=\"0\" selected=\"\">&lt;Modify&gt;</option>" + stringOptions + 
-                    "</select>" +
-                "</td>" + 
-                "<td><button type=\"button\" >Remove</button></td>" +
-           " </tr></tbody></table>";
+			tasksDiv.innerHTML = 
+					"<table>" +
+						"<thead>" +
+							"<tr>" +
+								"<th>Task</th>" +
+								"<th>Status</th>" +
+							"</tr>" +
+						"</thead>" +
+						"<tbody>" +
+							"<tr id=\"" + task.id + "\">"+
+								"<td>" + task.title + "</td>" +
+								"<td>" + task.status + "</td>" +
+								"<td>" +
+						"<select>" +
+                       "<option value=\"0\" selected=\"\">" +
+                       "&lt;Modify&gt;" +
+                       "</option>" + 
+                       		stringOptions + 
+                       "</select>" +
+		                "</td>" + 
+		                "<td>" +
+		                	"<button type=\"button\" >Remove</button>" +
+		                "</td>" +
+                			"</tr>" +
+           				"</tbody>" +
+           			"</table>";
 		}else{
 			/*
 			 * This is elements that are added after the first element in the
@@ -74,14 +82,23 @@ class GuiHandler{
 
 			const nyTask = document.createElement("tr");
 			nyTask.setAttribute("id", task.id);
-			nyTask.innerHTML = "<td>" + task.title + "</td>" +
-            "<td>" + task.status + "</td>" +
-            "<td>" +
+			nyTask.innerHTML = 
+				"<td>" + 
+					task.title + 
+				"</td>" +
+				"<td>" + 
+					task.status + 
+				"</td>" +
+				"<td>" +
                 "<select>" +
-                   " <option value=\"0\" selected=\"\">&lt;Modify&gt;</option>" + stringOptions + 
+                   "<option value=\"0\" selected=\"\">" +
+                   		"&lt;Modify&gt;" +
+                   "</option>" + stringOptions + 
                 "</select>" +
             "</td>" + 
-            "<td><button type=\"button\">Remove</button></td>";
+            "<td>" +
+            	"<button type=\"button\">Remove</button>" +
+            "</td>";
             const list = tasksDiv;
 			tasksDiv.getElementsByTagName('tbody')[0].appendChild(nyTask);
 		}
