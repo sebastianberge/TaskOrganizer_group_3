@@ -1,7 +1,7 @@
 class TaskBox{
-	constructor(allstatuses, onsubmit){
+	constructor(allstatuses){
 		this.allstatuses = allstatuses;
-		this.onsubmit = onsubmit;
+		this.onsubmit = null;
 	}
 	
 	/*
@@ -24,7 +24,15 @@ class TaskBox{
 	 * the modale box should disappear from view.
 	 */
 	close(){
-		
+		 let taskBox = document.getElementById("taskbox");
+		 taskBox.style.display = "none";
 	}
 	
+	show(){
+	
+	}
+	
+	submit(){
+	
+	}
 }
