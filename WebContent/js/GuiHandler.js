@@ -41,6 +41,7 @@ class GuiHandler{
 	set newStatusCallback(task){
 		console.log("User has approved to change the status of task with id " + task.id + "to " + task.status);
 		console.log("Observer, task with id " + task.id + "is not set to " + task.status + " in the view!");
+		// this.updateTask(task);
 	}
 	
 	
