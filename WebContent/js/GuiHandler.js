@@ -24,6 +24,7 @@ class GuiHandler{
 	get allstatuses(){
 		return this._allstatuses;
 	}
+	
 	/*
 	 * Setter that adds a callback to run when a Remove button is clicked.
 	 */
@@ -39,13 +40,10 @@ class GuiHandler{
 	 * changed.
 	 */
 	set newStatusCallback(task){
-		console.log("User has approved to change the status of task with id " + task.id + "to " + task.status);
+		console.log("User has approved to change the status of task with id " + task.id + " to " + task.status);
 		console.log("Observer, task with id " + task.id + "is not set to " + task.status + " in the view!");
 		// this.updateTask(task);
 	}
-	
-	
-	
 	
 	/*
 	 * Display a new task at the the top of the viewed list. The id of task must
@@ -57,6 +55,23 @@ class GuiHandler{
 		messageDiv.innerHTML = "Found " + task.id + " tasks";
 		const tasksDiv = document.getElementById('tasks');
 		// ---------------------------------------------------------
+		
+		
+		/*
+		 * **************UNDER CONSTRUCTION*************************************
+		 */
+
+		//const tasksmodaleboxdiv = document.getElementById("taskbox");
+		//const newtaskDiv = document.getElementById("newtask").getElementsByTagName("button")[0];
+		
+
+		
+		/*
+		 * **************UNDER CONSTRUCTION*************************************
+		 */
+		
+		
+		
 		let stringOptions;
 		for(status in this.allstatuses){
 			// Makes it so that the status of the task that is chosen is
@@ -136,7 +151,6 @@ class GuiHandler{
 		const select = document.getElementById(task.id).getElementsByTagName('select')[0];
 		select.addEventListener('change', function(){
 			const status = select.options[select.selectedIndex].value;	
-			console.log(status);
 			let choice = confirm("Set '" + task.title + "' to "+ status + "?");
 			if(choice){ 
 				task.status = status;
@@ -179,7 +193,6 @@ class GuiHandler{
 			console.log(task.status);
 		}
 		
-	
 	/*
 	 * Removes task from the view. A task with the given id must exist in the
 	 * view.
@@ -200,17 +213,19 @@ class GuiHandler{
 	}
 
 }	
-  const statuses = ["WAITING", "ACTIVE", "DONE"];
-  const tasks = [
-	    { id: 1, title: "Paint roof", status: "WAITING" },
+
+
+	const statuses = ["WAITING", "ACTIVE", "DONE"];
+	const tasks = [
+		{ id: 1, title: "Paint roof", status: "WAITING" },
 	    { id: 2, title: "Clean floor", status: "DONE" },
 	    { id: 3, title: "Wash windows", status: "ACTIVE" }
 	  ];
-  const gui = new GuiHandler(statuses);
+	const gui = new GuiHandler(statuses);
   
-  tasks.forEach(task => {
-    gui.showTask(task);
-  });
+	tasks.forEach(task => {
+		gui.showTask(task);
+	});
   
 
 }
