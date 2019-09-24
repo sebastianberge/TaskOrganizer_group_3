@@ -41,6 +41,8 @@ class GuiHandler{
 	 * not already exist in the view.
 	 */
 	showTask(task){
+		//const messageDiv = document.getElementById('message');
+		//messageDiv.innerHTML = "Some shit";
 		const tasksDiv = document.getElementById('tasks');
 		let stringOptions;
 		for(status in this.allstatuses){
