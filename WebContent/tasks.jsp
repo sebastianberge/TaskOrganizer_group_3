@@ -3,11 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="./js/Main.js" defer></script>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="./js/GuiHandler.js" defer></script>
-<script type="text/javascript" src="./js/Main.js" defer></script>
 <script type="text/javascript" src="./js/TaskBox.js" defer></script>
-
 <meta charset="ISO-8859-1">
 <title>Task Organizer</title>
 </head>
