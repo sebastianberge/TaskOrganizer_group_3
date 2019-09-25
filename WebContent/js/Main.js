@@ -24,6 +24,7 @@ const tasknewbutton = document.getElementById("newtask");
 const taskbox = new TaskBox();
 taskbox.allstatuses = statuses;
 taskbox.onsubmit = (task) => {
+	console.log("New task " + task.title + " with initial status " + task.status + " is added by the user.");
     gui.showTask(task);
     taskbox.close()
 };
