@@ -8,6 +8,7 @@ const tasks = [
   ];
 const gui = new GuiHandler(statuses);
 
+
 tasks.forEach(task => {
 	gui.showTask(task);
 });
@@ -15,23 +16,17 @@ tasks.forEach(task => {
 gui.noTask();
 
 
-  
-
-
-
 /*
+ * For the modal
+ */
 const tasksmodaleboxdiv = document.getElementById("taskbox");
 const tasknewbutton = document.getElementById("newtask");
-
-taskbox = new TaskBox(tasksmodaleboxdiv);
-let taskBoxStatus = ["Waiting", "Done", "Active"];
-const gui2 = new GuiHandler();
-taskbox.allstatuses = taskBoxStatus;
+const taskbox = new TaskBox();
+taskbox.allstatuses = statuses;
 taskbox.onsubmit = (task) => {
-    gui2.showTask(task);
+    gui.showTask(task);
     taskbox.close()
 };
 tasknewbutton.addEventListener("click", () => {
     taskbox.show()
 }, true);
-*/
