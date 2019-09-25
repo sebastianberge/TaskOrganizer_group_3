@@ -4,9 +4,11 @@
 <html>
 <head>
 <link href="css/style.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="./js/Main.js" defer></script>
-<script type="text/javascript" src="./js/TaskBox.js" defer></script>
 <script type="text/javascript" src="./js/GuiHandler.js" defer></script>
+<script type="text/javascript" src="./js/TaskBox.js" defer></script>
+<script type="text/javascript" src="./js/Main.js" defer></script>
+
+
 
 <meta charset="ISO-8859-1">
 <title>Task Organizer</title>
@@ -20,10 +22,8 @@
 	</div>
 	<div id="tasks"></div>
 
-	<!-- UNDER CONSTRUCTION -->
-	<!-- The Modal -->
+
 	<div class="modal" id="taskbox">
-		<!-- Modal content -->
 		<div class="modal-content">
 			<span class="close">&times;</span>
 			<table>
@@ -41,6 +41,5 @@
 			</p>
 		</div>
 	</div>
-	<!-- UNDER CONSTRUCTION -->
 </body>
 </html>
