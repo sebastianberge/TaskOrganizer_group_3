@@ -50,28 +50,8 @@ class GuiHandler{
 	 * not already exist in the view.
 	 */
 	showTask(task){
-		// ---------Solution for displaying nr of tasks for now----
-		const messageDiv = document.getElementById('message');
-		messageDiv.innerHTML = "Found " + task.id + " tasks";
+	
 		const tasksDiv = document.getElementById('tasks');
-		// ---------------------------------------------------------
-		
-		
-		/*
-		 * **************UNDER CONSTRUCTION*************************************
-		 */
-
-		//const tasksmodaleboxdiv = document.getElementById("taskbox");
-		//const newtaskDiv = document.getElementById("newtask").getElementsByTagName("button")[0];
-		
-
-		
-		/*
-		 * **************UNDER CONSTRUCTION*************************************
-		 */
-		
-		
-		
 		let stringOptions;
 		for(status in this.allstatuses){
 			// Makes it so that the status of the task that is chosen is
@@ -88,7 +68,6 @@ class GuiHandler{
 		 * elements could be added later
 		 */
 		if(tasksDiv.getElementsByTagName('table').length == 0){
-			console.log(task.id + " " + task.title + " " +task.status);
 			tasksDiv.innerHTML = 
 					"<table>" +
 						"<thead>" +
@@ -120,8 +99,6 @@ class GuiHandler{
 			 * This is elements that are added after the first element in the
 			 * JSON is added
 			 */
-			console.log(task.id + " " + task.title + " " + task.status);
-
 			const newTask = document.createElement("tr");
 			newTask.setAttribute("id", task.id);
 			newTask.innerHTML = 
@@ -202,6 +179,7 @@ class GuiHandler{
 		if (task != null) {
 			task.parentElement.removeChild(task); 
 		}
+		this.noTask();
 	}
 	 
 	/*
@@ -209,23 +187,33 @@ class GuiHandler{
 	 * has no tasks.
 	 */
 	noTask(){
-		
+		let tbody = document.getElementById('tasks').getElementsByTagName('tbody')[0];
+        let count = tbody.rows.length;
+
+        if (count === 0) {
+            document.getElementById('message').innerHTML = "Waiting for server data.";
+        } else {
+            document.getElementById('message').innerHTML = "Found " + count + " tasks.";
+        }
 	}
 
 }	
 
 
-	const statuses = ["WAITING", "ACTIVE", "DONE"];
-	const tasks = [
-		{ id: 1, title: "Paint roof", status: "WAITING" },
-	    { id: 2, title: "Clean floor", status: "DONE" },
-	    { id: 3, title: "Wash windows", status: "ACTIVE" }
-	  ];
-	const gui = new GuiHandler(statuses);
-  
-	tasks.forEach(task => {
-		gui.showTask(task);
-	});
+const statuses = ["WAITING", "ACTIVE", "DONE"];
+const tasks = [
+	{ id: 1, title: "Paint roof", status: "WAITING" },
+    { id: 2, title: "Clean floor", status: "DONE" },
+    { id: 3, title: "Wash windows", status: "ACTIVE" }
+  ];
+const gui = new GuiHandler(statuses);
+
+tasks.forEach(task => {
+	gui.showTask(task);
+});
+gui.noTask();
+
+
   
 
 }
