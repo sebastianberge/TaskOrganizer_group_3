@@ -22,7 +22,10 @@
 	</div>
 	<div id="tasks"></div>
 
-
+	<!-- Trigger/Open The Modal -->
+	<button id="modalButton">Open Modal</button>
+	
+	<!-- Modal for adding new tasks -->
 	<div class="modal" id="taskbox">
 		<div class="modal-content">
 			<span class="close">&times;</span>
