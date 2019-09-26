@@ -18,12 +18,9 @@
 		<p>Waiting for server data.</p>
 	</div>
 	<div id="newtask">
-		<button type="button">New task</button>
+		<button id="modalButton" type="button">New task</button>
 	</div>
 	<div id="tasks"></div>
-
-	<!-- Trigger/Open The Modal -->
-	<button id="modalButton">Open Modal</button>
 	
 	<!-- Modal for adding new tasks -->
 	<div class="modal" id="taskbox">
