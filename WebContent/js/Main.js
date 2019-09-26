@@ -22,6 +22,7 @@ gui.noTask();
 const tasksmodaleboxdiv = document.getElementById("taskbox");
 const tasknewbutton = document.getElementById("newtask");
 const taskbox = new TaskBox();
+// taskbox.close();
 taskbox.show();
 taskbox.allstatuses = statuses;
 taskbox.onsubmit = (task) => {

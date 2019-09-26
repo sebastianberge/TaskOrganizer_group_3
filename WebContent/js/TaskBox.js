@@ -37,13 +37,13 @@ class TaskBox {
         let modal = document.getElementById("taskbox");
         
         // Get the button that opens the modal
-        let modalButton = document.getElementById("modalButton");
+        document.getElementById("modalButton").addEventListener('click', openModal);
 
         // Get the <span> element that closes the modal
         let span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks on the button, open the modal 
-        modalButton.onclick = function() {
+        // When the user clicks on the button, open the modal
+        function openModal() {
           modal.style.display = "block";
           console.log("Clicked!");
         }
@@ -63,7 +63,7 @@ class TaskBox {
         }
 
         // Show the modal.
-        modal.style.display = "block";
+        // modal.style.display = "block";
 
         // When the user clicks on <span> (x), close the modal
         span.addEventListener("click", () => this.close(), true);
