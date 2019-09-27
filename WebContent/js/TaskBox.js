@@ -31,8 +31,6 @@ class TaskBox {
     }
 
     show() {
-    	
-    	console.log("Method 'show' now running.");
         // Get the modal
         let modal = document.getElementById("taskbox");
         
@@ -45,7 +43,6 @@ class TaskBox {
         // When the user clicks on the button, open the modal
         function openModal() {
           modal.style.display = "block";
-          console.log("Clicked!");
         }
 
         // When the user clicks on <span> (x), close the modal
