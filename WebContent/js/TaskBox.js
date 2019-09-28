@@ -57,10 +57,15 @@ class TaskBox {
         	let title = document.getElementById("taskInput").value;
             let select = document.getElementById("modalStatuses");
             let status = select.options[select.selectedIndex].value;
+            
+            if(title == ""){
+            	alert("The title can't be empty")
+            } else {
             let task = new Task(title, status);
             
 			gui.newTaskCallback = task
 			this.close;
+            }
         });
         
     }
