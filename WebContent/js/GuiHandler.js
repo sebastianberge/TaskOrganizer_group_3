@@ -4,8 +4,6 @@ class GuiHandler{
 	
 	constructor (allstatuses){
 		this.allstatuses = allstatuses;
-	// this.deleteTaskCallback = deleteTaskCallback;
-	// this.newStatusCallback = newStatusCallback;
 		}
 	
 	/*
@@ -28,9 +26,17 @@ class GuiHandler{
 	 * Setter that adds a callback to run when a Remove button is clicked.
 	 */
 	set deleteTaskCallback(id){
-		console.log("User has approved the deletion of task with id " + id + ".");		
-		console.log("Observer, task with id " + id + " is not removed from the view!")
-		// this.removeTask(id);
+		ajax.deleteTask(id)
+		.then(text => {
+			let json = JSON.parse(text)
+			if (json.responseStatus == 1){
+				this.removeTask(id);
+			} else {
+				console.log("The task was not deleted.")
+			}
+		})
+		
+		
 	}
 	
 	
@@ -39,10 +45,19 @@ class GuiHandler{
 	 * changed.
 	 */
 	set newStatusCallback(task){
-		console.log("User has approved to change the status of task with id " + task.id + " to " + task.status);
-		console.log("Observer, task with id " + task.id + "is not set to " + task.status + " in the view!");
-		// this.updateTask(task);
+		ajax.modifyStatus(task)
+		.then(text => {
+			let json = JSON.parse(text)
+			if (json.responseStatus == 1){
+				this.updateTask(task);
+				location.reload(false)
+			} else {
+				console.log("Status was not updated.")
+			}
+		})
 	}
+	
+
 	
 	/*
 	 * Display a new task at the the top of the viewed list. The id of task must

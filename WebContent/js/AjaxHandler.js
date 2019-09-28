@@ -78,7 +78,6 @@ class AjaxHandler {
 	        const response = await fetch(url,{method: "GET"})
 	        try {
 	            const tasks = await response.text()
-	            console.log(tasks)
 	            return tasks
 	        } catch (error) {
 	            console.log(error)
