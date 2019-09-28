@@ -1,11 +1,5 @@
 "use strict";
 
-/*
- * This class enables use of the addTask Modal, it shows a modal when
- * initialized and called with show(). It has a callback function that will be
- * used when a task is added. Set this like t.onsubmit = x
- */
-
 class TaskBox {
 
     constructor() {
@@ -31,21 +25,16 @@ class TaskBox {
     }
 
     show() {
-        // Get the modal
         let modal = document.getElementById("taskbox");
         
-        // Get the button that opens the modal
         document.getElementById("modalButton").addEventListener('click', openModal);
 
-        // Get the <span> element that closes the modal
         let span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks on the button, open the modal
         function openModal() {
           modal.style.display = "block";
         }
 
-        // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
           modal.style.display = "none";
         }
@@ -59,25 +48,23 @@ class TaskBox {
             }
         }
 
-        // Show the modal.
-        // modal.style.display = "block";
-
-        // When the user clicks on <span> (x), close the modal
+    
         span.addEventListener("click", () => this.close(), true);
 
         let addTaskButton = document.getElementById("addTaskButton");
 
-        addTaskButton.addEventListener("click", () => this.submit(), true);
+        addTaskButton.addEventListener("click", function(){
+        	let title = document.getElementById("taskInput").value;
+            let select = document.getElementById("modalStatuses");
+            let status = select.options[select.selectedIndex].value;
+            let task = new Task(title, status);
+            
+			gui.newTaskCallback = task
+			this.close;
+        });
         
     }
 
-    submit() {
-        let title = document.getElementById("taskInput").value;
-        let select = document.getElementById("modalStatuses");
-        let status = select.options[select.selectedIndex].value;
-        let task = new Task(title, status);
-        this._onsubmit(task)
-    }
 }
 
 class Task {

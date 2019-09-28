@@ -86,4 +86,5 @@ class AjaxHandler {
 	        console.log(error)
 	    }
 	}
+
 }

@@ -35,10 +35,23 @@ class GuiHandler{
 				console.log("The task was not deleted.")
 			}
 		})
-		
-		
 	}
 	
+	/*
+	 * Setter that adds new task
+	 */
+	set newTaskCallback(task){
+		ajax.addNewTask(task)
+			.then(text => {
+				let json = JSON.parse(text)
+				if (json.responseStatus == 1){
+					console.log("The task has been added.")
+					location.reload(false)
+				} else {
+					console.log("The task was not added.")
+				}	
+			})
+	}
 	
 	/*
 	 * Setter that adds a callback to run when an Modify select element is
@@ -56,8 +69,6 @@ class GuiHandler{
 			}
 		})
 	}
-	
-
 	
 	/*
 	 * Display a new task at the the top of the viewed list. The id of task must
@@ -113,9 +124,9 @@ class GuiHandler{
 			 * This is elements that are added after the first element in the
 			 * JSON is added
 			 */
-			const newTask = document.createElement("tr");
-			newTask.setAttribute("id", task.id);
-			newTask.innerHTML = 
+			const newTaskc = document.createElement("tr");
+			newTaskc.setAttribute("id", task.id);
+			newTaskc.innerHTML = 
 				"<td>" + 
 					task.title + 
 				"</td>" +
@@ -134,7 +145,7 @@ class GuiHandler{
 	            	"<button type=\"button\">Remove</button>" +
 	            "</td>";
             const list = tasksDiv;
-			tasksDiv.getElementsByTagName('tbody')[0].appendChild(newTask);
+			tasksDiv.getElementsByTagName('tbody')[0].appendChild(newTaskc);
 		}
 
 		// Change status function in use
@@ -163,6 +174,9 @@ class GuiHandler{
 				console.log("You just cancelled to delete a task!");
 			}
 		});
+		
+		this.noTask();
+
 	}
 	
 	/*
@@ -182,6 +196,9 @@ class GuiHandler{
 			}
 			node.getElementsByTagName('select')[0].selectedIndex = 0;
 			console.log(task.status);
+			
+			this.noTask();
+
 		}
 		
 	/*
@@ -195,7 +212,7 @@ class GuiHandler{
 		}
 		this.noTask();
 	}
-	 
+	  
 	/*
 	 * Tells GuiHandler that the list of tasks are empty, e.g. when the database
 	 * has no tasks.

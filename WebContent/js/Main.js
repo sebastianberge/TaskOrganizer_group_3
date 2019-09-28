@@ -28,10 +28,6 @@ function setup(){
 	const tasknewbutton = document.getElementById("newtask");
 	taskbox.show();
 	taskbox.allstatuses = json.allstatuses;
-	taskbox.onsubmit = (task) => {
-		console.log("New task " + task.title + " with initial status " + task.status + " is added by the user.");
-	    taskbox.close()
-	};
 	tasknewbutton.addEventListener("click", () => {
 	    taskbox.show()
 	}, true);
