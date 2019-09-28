@@ -22,15 +22,16 @@ function setup(){
 				gui.showTask(allTasks[i])
 			}
 	})
+
 	
-	//Gets and add the modal
+	// ----------------- TASK BOX -----------------
 	const tasksmodaleboxdiv = document.getElementById("taskbox");
 	const tasknewbutton = document.getElementById("newtask");
-	taskbox.show();
 	taskbox.allstatuses = json.allstatuses;
 	tasknewbutton.addEventListener("click", () => {
 	    taskbox.show()
 	}, true);
+	// ----------------- TASK BOX -----------------
 })
 console.log("Finished up the setup process");
 }
