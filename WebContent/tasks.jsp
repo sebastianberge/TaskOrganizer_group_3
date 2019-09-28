@@ -13,6 +13,7 @@
 
 <meta charset="ISO-8859-1">
 <title>Task Organizer</title>
+
 </head>
 <body>
 	<div id="message">
@@ -22,7 +23,7 @@
 		<button id="modalButton" type="button">New task</button>
 	</div>
 	<div id="tasks"></div>
-	
+
 	<!-- Modal for adding new tasks -->
 	<div class="modal" id="taskbox">
 		<div class="modal-content">
@@ -37,6 +38,7 @@
 					<td><select id="modalStatuses"></select></td>
 				</tr>
 			</table>
+
 			<p>
 				<button id="addTaskButton" type="submit">Add task</button>
 			</p>

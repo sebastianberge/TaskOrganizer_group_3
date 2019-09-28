@@ -1,7 +1,10 @@
 "use strict";
 
 class AjaxHandler {
-	
+
+	/*
+	 * Ajax for show all of the statuses
+	 */
 	async allstatuses() {
 	    const url='../TaskServices/broker/allstatuses'
 
@@ -19,6 +22,9 @@ class AjaxHandler {
 	        }  
 	}
 	
+	/*
+	 * Ajax for deleting a task with a specific id
+	 */
 	async deleteTask(id) {
 	    const url='../TaskServices/broker/task/' + id
 	    try {
@@ -34,6 +40,9 @@ class AjaxHandler {
 	    }
 	}
 	
+	/*
+	 * Ajax for changing a status on a task
+	 */
 	async modifyStatus(task) {
 	    const url='../TaskServices/broker/task/' + task.id 
 	    try {
@@ -53,6 +62,9 @@ class AjaxHandler {
 	    }
 	}
 	
+	/*
+	 * Ajax for adding a new taks
+	 */
 	async addNewTask(task) {
 	    const url='../TaskServices/broker/task'
 	    try {
@@ -72,6 +84,9 @@ class AjaxHandler {
 	    }
 	}
 	
+	/*
+	 * Ajax for getting all of the task in the "database"
+	 */
 	async getAllTasks() {
 	    const url='../TaskServices/broker/tasklist'
 	    try {

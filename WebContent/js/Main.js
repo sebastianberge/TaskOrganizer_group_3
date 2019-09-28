@@ -4,7 +4,9 @@ const ajax = new AjaxHandler();
 const gui = new GuiHandler();
 const taskbox = new TaskBox();
 
-
+/*
+ * Uses this to build the application
+ */
 function setup(){
 	
 	// Get all statuses from ajax

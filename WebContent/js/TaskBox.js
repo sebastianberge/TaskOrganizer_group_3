@@ -24,6 +24,9 @@ class TaskBox {
         m.style.display = "none";
     }
 
+    /*
+     * Used to show the modal
+     */
     show() {
         let modal = document.getElementById("taskbox");
         
