@@ -1,6 +1,6 @@
 "use strict";
 
-class AjaxHandler {
+class TaskHandler {
 
 	/*
 	 * Ajax for show all of the statuses

@@ -1,6 +1,6 @@
 "use strict"
 
-const ajax = new AjaxHandler();
+const taskHandler = new TaskHandler();
 const gui = new GuiHandler();
 const taskbox = new TaskBox();
 
@@ -10,13 +10,13 @@ const taskbox = new TaskBox();
 function setup(){
 	
 	// Get all statuses from ajax
-	ajax.allstatuses()
+	taskHandler.allstatuses()
 	.then((text) => {
 		let json = JSON.parse(text)
 		gui.allstatuses = json.allstatuses
 		
 		// Get all tasks from ajax
-		ajax.getAllTasks()
+		taskHandler.getAllTasks()
 		.then(tasks => {
 			let json = JSON.parse(tasks)
 			let allTasks = json.tasks

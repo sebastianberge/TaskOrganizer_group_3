@@ -26,7 +26,7 @@ class GuiHandler{
 	 * Setter that adds a callback to run when a Remove button is clicked.
 	 */
 	set deleteTaskCallback(id){
-		ajax.deleteTask(id)
+		taskHandler.deleteTask(id)
 		.then(text => {
 			let json = JSON.parse(text)
 			if (json.responseStatus == 1){
@@ -41,7 +41,7 @@ class GuiHandler{
 	 * Setter that adds new task
 	 */
 	set newTaskCallback(task){
-		ajax.addNewTask(task)
+		taskHandler.addNewTask(task)
 			.then(text => {
 				let json = JSON.parse(text)
 				if (json.responseStatus == 1){
@@ -58,7 +58,7 @@ class GuiHandler{
 	 * changed.
 	 */
 	set newStatusCallback(task){
-		ajax.modifyStatus(task)
+		taskHandler.modifyStatus(task)
 		.then(text => {
 			let json = JSON.parse(text)
 			if (json.responseStatus == 1){
