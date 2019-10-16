@@ -29,33 +29,19 @@ class TaskBox {
      */
     show() {
         let modal = document.getElementById("taskbox");
-        
-        document.getElementById("modalButton").addEventListener('click', openModal);
-
         let span = document.getElementsByClassName("close")[0];
-
-        function openModal() {
-          modal.style.display = "block";
-        }
-
-        span.onclick = function() {
-          modal.style.display = "none";
-        }
-        
         let select = document.getElementById("modalStatuses");
-        if (!select.hasChildNodes()) {
-            for (let i = 0; i < this._allstatuses.length; i++) {
-                let el = document.createElement("option");
-                el.innerText = this._allstatuses[i];
-                select.appendChild(el);
-            }
-        }
-
-    
+        let addTaskButton = document.getElementById("addTaskButton");
+        let modalButton = document.getElementById("modalButton");
+        
+        modalButton.addEventListener('click', openModal);
         span.addEventListener("click", () => this.close(), true);
 
-        let addTaskButton = document.getElementById("addTaskButton");
-
+        span.onclick = function() {
+            modal.style.display = "none";
+          }
+        
+       
         addTaskButton.addEventListener("click", function(){
         	let title = document.getElementById("taskInput").value;
             let select = document.getElementById("modalStatuses");
@@ -71,8 +57,19 @@ class TaskBox {
             }
         });
         
+        
+        function openModal() {
+          modal.style.display = "block";
+        }
+   
+        if (!select.hasChildNodes()) {
+            for (let i = 0; i < this._allstatuses.length; i++) {
+                let el = document.createElement("option");
+                el.innerText = this._allstatuses[i];
+                select.appendChild(el);
+            }
+        }
     }
-
 }
 
 class Task {

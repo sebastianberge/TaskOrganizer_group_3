@@ -25,13 +25,13 @@ function setup(){
 			}
 	})
 	
-	// The TaskBox
-	const tasksmodaleboxdiv = document.getElementById("taskbox");
+		// The TaskBox
+		const tasksmodaleboxdiv = document.getElementById("taskbox");
 		const tasknewbutton = document.getElementById("newtask");
 		taskbox.allstatuses = json.allstatuses;
 		tasknewbutton.addEventListener("click", () => {
-		taskbox.show()
-	}, true);
+			taskbox.show()
+		}, true);
 })
 	console.log("Finished up the setup process");
 }
