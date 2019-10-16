@@ -1,10 +1,18 @@
-"use strict";
-
 class TaskBox {
 
-    constructor() {
-        this._allstatuses = [];
-        this._onsubmit = null;
+    constructor(statuses, onsubmit) {
+        if (arguments.length > 0) {
+            this._allstatuses = statuses;
+            this._onsubmit = onsubmit;
+        } else {
+            this._allstatuses = [];
+            this._onsubmit = null;
+        }
+        let addTaskButton = document.getElementById("addTaskButton");
+        addTaskButton.addEventListener("click", () => this.submit(), true);
+        let span = document.getElementsByClassName("close")[0];
+        span.addEventListener("click", () => this.close(), true);
+
     }
 
     get allstatuses() {
@@ -24,44 +32,12 @@ class TaskBox {
         m.style.display = "none";
     }
 
-    /*
-     * Used to show the modal
-     */
     show() {
+        // Get the modal
         let modal = document.getElementById("taskbox");
-        let span = document.getElementsByClassName("close")[0];
-        let select = document.getElementById("modalStatuses");
-        let addTaskButton = document.getElementById("addTaskButton");
-        let modalButton = document.getElementById("modalButton");
-        
-        modalButton.addEventListener('click', openModal);
-        span.addEventListener("click", () => this.close(), true);
 
-        span.onclick = function() {
-            modal.style.display = "none";
-          }
-        
-       
-        addTaskButton.addEventListener("click", function(){
-        	let title = document.getElementById("taskInput").value;
-            let select = document.getElementById("modalStatuses");
-            let status = select.options[select.selectedIndex].value;
-            
-            if(title == ""){
-            	alert("The title can't be empty")
-            } else {
-            let task = new Task(title, status);
-            
-			gui.newTaskCallback = task
-			this.close;
-            }
-        });
-        
-        
-        function openModal() {
-          modal.style.display = "block";
-        }
-   
+        let select = document.getElementById("modalStatuses");
+
         if (!select.hasChildNodes()) {
             for (let i = 0; i < this._allstatuses.length; i++) {
                 let el = document.createElement("option");
@@ -69,6 +45,17 @@ class TaskBox {
                 select.appendChild(el);
             }
         }
+
+        // Show the modal.
+        modal.style.display = "block";
+    }
+
+    submit() {
+        let title = document.getElementById("taskInput").value;
+        let select = document.getElementById("modalStatuses");
+        let status = select.options[select.selectedIndex].value;
+        let task = new Task(title, status);
+        this._onsubmit(task)
     }
 }
 
