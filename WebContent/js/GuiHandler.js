@@ -18,15 +18,6 @@ class GuiHandler {
     }
 
     /*
-	 * Remove task from view
-	 */
-    removeTask = (id) => {
-        let task = document.getElementById(id);
-        task.parentElement.removeChild(task);
-        this.noTask();
-    };
-
-    /*
 	 * Shows all tasks using a forEach loop in Main.js
 	 */
     showTask = (task) => {
@@ -141,6 +132,15 @@ class GuiHandler {
         	console.log("You just cancelled to update a task status!");
         }
     }
+    
+    /*
+	 * Remove task from view
+	 */
+    removeTask = (id) => {
+        let task = document.getElementById(id);
+        task.parentElement.removeChild(task);
+        this.noTask();
+    };
     
     /*
 	 * Checks how many tasks you have and view it in the view

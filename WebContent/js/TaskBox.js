@@ -4,17 +4,21 @@
 class TaskBox {
 	
     constructor(statuses, onsubmit) {
-        if (arguments.length > 0) {
-            this._allstatuses = statuses;
-            this._onsubmit = onsubmit;
+        if (arguments.length == 0) {
+        	  this._allstatuses = [];
+              this._onsubmit = null;
+         
         } else {
-            this._allstatuses = [];
-            this._onsubmit = null;
+        	   this._allstatuses = statuses;
+               this._onsubmit = onsubmit; 
         }
         
         let addTaskButtonElement = document.getElementById("addTaskButton");
         let spanElement = document.getElementsByClassName("close")[0];
         
+        /*
+         * Eventlisteners on for closing and submiting
+         */
         addTaskButtonElement.addEventListener("click", () => this.submit(), true);
         spanElement.addEventListener("click", () => this.close(), true);
 
@@ -41,6 +45,19 @@ class TaskBox {
     }
 
     /*
+	 * Fetches the data and from the input and makes a task object and then set
+	 * the submit
+	 */
+    submit() {
+        let titleInput = document.getElementById("taskInput").value;
+        let select = document.getElementById("modalStatuses");
+        let statusInput = select.options[select.selectedIndex].value;
+        
+        let task = new Task(titleInput, statusInput);
+        this._onsubmit(task)
+    }
+    
+    /*
 	 * Function for showing the task box
 	 */
     show() {
@@ -55,18 +72,6 @@ class TaskBox {
             }
         }
         modalElement.style.display = "block";
-    }
-
-    /*
-	 * 
-	 */
-    submit() {
-        let titleInput = document.getElementById("taskInput").value;
-        let select = document.getElementById("modalStatuses");
-        let statusInput = select.options[select.selectedIndex].value;
-
-        let task = new Task(titleInput, statusInput);
-        this._onsubmit(task)
     }
 }
 
