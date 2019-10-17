@@ -1,6 +1,9 @@
 "use strict";
 
 class GuiHandler {
+	/*
+	 * 
+	 */
     constructor() {
         this.tasks = [];
         this.allstatuses = [];
@@ -16,13 +19,19 @@ class GuiHandler {
         this.newStatusCallbackArray.push(funk);
     }
 
+    /*
+     * 
+     */
     removeTask = (id) => {
-        let item = document.getElementById(id);
-        item.parentElement.removeChild(item);
+        let task = document.getElementById(id);
+        task.parentElement.removeChild(task);
+        console.log()
         this.noTask();
-
     };
 
+    /*
+     * 
+     */
     showTask = (task) => {
         let tekstloop = `<select class="select-element">
         <option value="0" selected="">&lt;Modify&gt;</option>`;
@@ -48,14 +57,11 @@ class GuiHandler {
         
         let tableButton = document.createElement("button");
         let tbody = document.getElementById("tbody");
-        let buttons = document.getElementsByClassName('remove-btn');
+        let removeButton = document.getElementsByClassName('remove-btn');
         let selectors = document.getElementsByClassName('select-element');
 
-        /*
-		 * 
-		 */
         tr.setAttribute("id", task.id);
-        
+    
         td1.textContent = task.title;
         td2.textContent = task.status;
         td3.innerHTML = tekstloop;
@@ -76,7 +82,7 @@ class GuiHandler {
 		 * 
 		 */
         tbody.insertBefore(tr, tbody.childNodes[0]);
-        buttons[0].addEventListener("click", this.onRemoveButtonClick);
+        removeButton[0].addEventListener("click", this.onRemoveButtonClick);
         selectors[0].addEventListener("change", this.onUpdateStatus)
         
         /*
@@ -84,19 +90,10 @@ class GuiHandler {
 		 */
         this.noTask();
     };
-
-    noTask = () => {
-        let tbody = document.getElementById("tbody");
-        let count = tbody.rows.length;
-
-        if (count > 0) {
-            document.getElementById("message").innerHTML = "Found " + count + " tasks.";
-
-        } else {
-            document.getElementById("message").innerHTML = "No task was found";
-        }
-    }
-
+    
+    /*
+     * 
+     */
     updateTask = (task) => {
         document.getElementById(task.id).getElementsByTagName("td")[1].innerHTML = task.status;
         const test = document.getElementById(task.id).getElementsByTagName("td")[2];
@@ -112,21 +109,51 @@ class GuiHandler {
 
     }
 
+    /*
+     * 
+     */
     onRemoveButtonClick(event) {
         let button = event.currentTarget;
         let tableRow = button.parentElement.parentElement;
         let taskName = tableRow.getElementsByTagName("td")[0].textContent;
-        if (window.confirm("delete task " + taskName + "?")) {
-            gui.deleteTaskCallbackArray.forEach((x) => x(tableRow.id))
+        
+        let choice = confirm("Delete task " + taskName + "?");
+        if(choice){
+        	 gui.deleteTaskCallbackArray.forEach((x) => x(tableRow.id))
+             
+        } else {
+        	console.log("You just cancelled to delete a task!");
         }
+        
     }
 
+    /*
+     * 
+     */
     onUpdateStatus(event) {
         let selector = event.currentTarget;
         let taskName = selector.parentElement.parentElement.getElementsByTagName("td")[0].textContent;
         let selectedValue = event.currentTarget.value;
-        if (window.confirm("Set " + taskName + " to " + selectedValue)) {
+        
+        let choice = confirm("Set " + taskName + " to " + selectedValue + "?");
+        if (choice) {
             gui.newStatusCallbackArray.forEach((x) => x(selector.parentElement.parentElement.id, selectedValue))
+        } else {
+        	console.log("You just cancelled to update a task status!");
+        }
+    }
+    
+    /*
+     * 
+     */
+    noTask = () => {
+        let tbody = document.getElementById("tbody");
+        let count = tbody.rows.length;
+
+        if (count === 0) {
+            document.getElementById("message").innerHTML = "Waiting for server data.";
+        } else {
+            document.getElementById("message").innerHTML = "Found " + count + " tasks.";
         }
     }
 }

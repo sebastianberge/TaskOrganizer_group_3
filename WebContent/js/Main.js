@@ -3,12 +3,14 @@
 const gui = new GuiHandler();
 
 
-
 /*
- * Get server data
+ * Setting up
  */
-const getServerData = async () => {
+const setup = async () => {
     try {
+    	/*
+		 * Fetches all the statuses using ajax
+		 */
         await fetch('../TaskServices/broker/allstatuses')
             .then(resolve =>{
                 return resolve.json();
@@ -19,10 +21,13 @@ const getServerData = async () => {
                             gui.allstatuses.push(el);
                         })
                     } else {
-                        console.log("no response");
+                        console.log("No response from the fetch");
                     }
             });
-
+        
+        /*
+		 * Fetches all of the saved tasks using ajax
+		 */
         await fetch('../TaskServices/broker/tasklist')
             .then(resolve =>{
                 return resolve.json();
@@ -35,26 +40,35 @@ const getServerData = async () => {
                         gui.tasks.push(el);
                     })
                 }else {
-                    console.log("No response");
+                    console.log("No response from the fetch");
                 }
             });
-
+        
+        /*
+		 * for loop to view all of the tasks
+		 */
         gui.tasks.forEach((task) => {
             gui.showTask(task);
         });
 
     } catch (error) {
         console.log(error);
-    }   
+    }  
+    
+    /*
+	 * Runs the function noTask for viewing how many tasks there is
+	 */
     gui.noTask();
-}
+    
+    console.log("Finished up the setup process");
+  }
 
 
 
 /*
- * Adds a new task
+ * Adds a new task using ajax
  */
-const addTaskCallback = async (task) => {
+const addNewTask = async (task) => {
     
 	try {
         const response = await fetch('../TaskServices/broker/task', {
@@ -79,7 +93,7 @@ const addTaskCallback = async (task) => {
 };
 
 /*
- * Changes the status
+ * Changes the status using ajax
  */
 gui.newStatusCallback = async (id,newStatus) => {
     const url = '../TaskServices/broker/task/' + id;
@@ -137,7 +151,7 @@ const tasknewbutton = document.getElementById("newTask");
 const taskbox = new TaskBox(tasksmodaleboxdiv);
 
 taskbox.allstatuses = gui.allstatuses;
-taskbox.onsubmit = addTaskCallback;
+taskbox.onsubmit = addNewTask;
 tasknewbutton.addEventListener("click", () => {
     taskbox.show()
 }, true);
@@ -145,4 +159,4 @@ tasknewbutton.addEventListener("click", () => {
 /*
  * Runs the getServerData when you refresh the page.
  */
-window.addEventListener("load", getServerData);
+window.addEventListener("load", setup);
