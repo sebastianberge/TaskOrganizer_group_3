@@ -7,7 +7,7 @@ const gui = new GuiHandler();
 /*
  * Get server data
  */
-const getServerData = async ()=>{
+const getServerData = async () => {
     try {
         await fetch('../TaskServices/broker/allstatuses')
             .then(resolve =>{
@@ -47,8 +47,9 @@ const getServerData = async ()=>{
         console.log(error);
     }   
     gui.noTask();
-    
 }
+
+
 
 /*
  * Adds a new task
@@ -77,6 +78,28 @@ const addTaskCallback = async (task) => {
     }
 };
 
+/*
+ * Changes the status
+ */
+gui.newStatusCallback = async (id,newStatus) => {
+    const url = '../TaskServices/broker/task/' + id;
+    try {
+        const response = await fetch(url,{
+            method: "PUT",
+            headers: {"Content-Type": "application/json; charset=utf-8"},
+            body: JSON.stringify({"status": newStatus})
+        });
+        try {
+            const text = await response.json();
+            gui.updateTask(text);
+            console.log(text)
+        } catch (error) {
+            console.log(error)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+};
 
 /*
  * Deletes a task with the use of ajax
@@ -104,35 +127,6 @@ gui.deleteTaskCallback = async (id) =>{
 };
 
 
-/*
- * Changes the status
- */
-gui.newStatusCallback = async (id,newStatus) => {
-    const url = '../TaskServices/broker/task/' + id;
-    try {
-        const response = await fetch(url,{
-            method: "PUT",
-            headers: {"Content-Type": "application/json; charset=utf-8"},
-            body: JSON.stringify({"status": newStatus})
-        });
-        try {
-            const text = await response.json();
-            gui.updateTask(text);
-            console.log(text)
-        } catch (error) {
-            console.log(error)
-        }
-    } catch (error) {
-        console.log(error)
-    }
-};
-
-
-/*
- * Runs the getServerData when you refresh the page.
- */
-window.addEventListener("load", getServerData);
-
 
 
 /*
@@ -141,8 +135,14 @@ window.addEventListener("load", getServerData);
 const tasksmodaleboxdiv = document.getElementById("taskbox");
 const tasknewbutton = document.getElementById("newTask");
 const taskbox = new TaskBox(tasksmodaleboxdiv);
+
 taskbox.allstatuses = gui.allstatuses;
 taskbox.onsubmit = addTaskCallback;
 tasknewbutton.addEventListener("click", () => {
     taskbox.show()
 }, true);
+
+/*
+ * Runs the getServerData when you refresh the page.
+ */
+window.addEventListener("load", getServerData);
