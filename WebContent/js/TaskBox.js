@@ -12,11 +12,11 @@ class TaskBox {
             this._onsubmit = null;
         }
         
-        let addTaskButton = document.getElementById("addTaskButton");
-        let span = document.getElementsByClassName("close")[0];
+        let addTaskButtonElement = document.getElementById("addTaskButton");
+        let spanElement = document.getElementsByClassName("close")[0];
         
-        addTaskButton.addEventListener("click", () => this.submit(), true);
-        span.addEventListener("click", () => this.close(), true);
+        addTaskButtonElement.addEventListener("click", () => this.submit(), true);
+        spanElement.addEventListener("click", () => this.close(), true);
 
     }
 
@@ -36,36 +36,36 @@ class TaskBox {
 	 * Function for closing the task box
 	 */
     close() {
-        let m = document.getElementById("taskbox");
-        m.style.display = "none";
+        let tb = document.getElementById("taskbox");
+        tb.style.display = "none";
     }
 
     /*
 	 * Function for showing the task box
 	 */
     show() {
-        let modal = document.getElementById("taskbox");
-        let select = document.getElementById("modalStatuses");
+        let modalElement = document.getElementById("taskbox");
+        let selectElement = document.getElementById("modalStatuses");
 
-        if (!select.hasChildNodes()) {
+        if (!selectElement.hasChildNodes()) {
             for (let i = 0; i < this._allstatuses.length; i++) {
                 let el = document.createElement("option");
                 el.innerText = this._allstatuses[i];
-                select.appendChild(el);
+                selectElement.appendChild(el);
             }
         }
-        modal.style.display = "block";
+        modalElement.style.display = "block";
     }
 
     /*
 	 * 
 	 */
     submit() {
-        let title = document.getElementById("taskInput").value;
+        let titleInput = document.getElementById("taskInput").value;
         let select = document.getElementById("modalStatuses");
-        let status = select.options[select.selectedIndex].value;
+        let statusInput = select.options[select.selectedIndex].value;
 
-        let task = new Task(title, status);
+        let task = new Task(titleInput, statusInput);
         this._onsubmit(task)
     }
 }

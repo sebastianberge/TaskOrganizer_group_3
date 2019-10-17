@@ -2,35 +2,6 @@
 
 const gui = new GuiHandler();
 
-
-/*
- * Adds a new task using ajax
- */
-const addNewTask = async (task) => {
-    
-	try {
-        const response = await fetch('../TaskServices/broker/task', {
-            method: "POST",
-            body: JSON.stringify(task),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-        taskbox.close();
-        await response.json().then(data => {
-            let resultTask = {
-                id: data.task.id,
-                title: data.task.title,
-                status: data.task.status
-            };
-            console.log("The task " + resultTask.title + " was added!");
-            gui.showTask(resultTask);
-        });
-    } catch (error) {
-        console.log(error);
-    }
-};
-
 /*
  * Changes the status using ajax
  */
@@ -140,6 +111,34 @@ const setup = async () => {
     gui.noTask();
     console.log("Finished up the setup process");
 }
+
+/*
+ * Adds a new task using ajax
+ */
+const addNewTask = async (task) => {
+    
+	try {
+        const response = await fetch('../TaskServices/broker/task', {
+            method: "POST",
+            body: JSON.stringify(task),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        taskbox.close();
+        await response.json().then(data => {
+            let resultTask = {
+                id: data.task.id,
+                title: data.task.title,
+                status: data.task.status
+            };
+            console.log("The task " + resultTask.title + " was added!");
+            gui.showTask(resultTask);
+        });
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 /*
  * TaskBox handling
