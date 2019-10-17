@@ -1,9 +1,7 @@
 "use strict";
 
 class GuiHandler {
-	/*
-	 * 
-	 */
+
     constructor() {
         this.tasks = [];
         this.allstatuses = [];
@@ -11,27 +9,26 @@ class GuiHandler {
         this.newStatusCallbackArray = [];
     }
 
-    set deleteTaskCallback(funk) {
-        this.deleteTaskCallbackArray.push(funk);
+    set deleteTaskCallback(f) {
+        this.deleteTaskCallbackArray.push(f);
     }
 
-    set newStatusCallback(funk) {
-        this.newStatusCallbackArray.push(funk);
+    set newStatusCallback(f) {
+        this.newStatusCallbackArray.push(f);
     }
 
     /*
-     * 
-     */
+	 * Remove task from view
+	 */
     removeTask = (id) => {
         let task = document.getElementById(id);
         task.parentElement.removeChild(task);
-        console.log()
         this.noTask();
     };
 
     /*
-     * 
-     */
+	 * Shows all tasks using a forEach loop in Main.js
+	 */
     showTask = (task) => {
         let tekstloop = `<select class="select-element">
         <option value="0" selected="">&lt;Modify&gt;</option>`;
@@ -66,9 +63,9 @@ class GuiHandler {
         td2.textContent = task.status;
         td3.innerHTML = tekstloop;
         
-        tableButton.setAttribute("id", "rbtn");
         tableButton.setAttribute("class", "remove-btn");
         tableButton.setAttribute("type", "button");
+        tableButton.setAttribute("id", "rbtn");
         tableButton.textContent = "Remove";
         
         td4.appendChild(tableButton);
@@ -82,8 +79,8 @@ class GuiHandler {
 		 * 
 		 */
         tbody.insertBefore(tr, tbody.childNodes[0]);
-        removeButton[0].addEventListener("click", this.onRemoveButtonClick);
-        selectors[0].addEventListener("change", this.onUpdateStatus)
+        removeButton[0].addEventListener("click", this.removeTaskClick);
+        selectors[0].addEventListener("change", this.updateTaskClick)
         
         /*
 		 * Fetches and shows how many tasks there are in the table
@@ -92,8 +89,8 @@ class GuiHandler {
     };
     
     /*
-     * 
-     */
+	 * Update task
+	 */
     updateTask = (task) => {
         document.getElementById(task.id).getElementsByTagName("td")[1].innerHTML = task.status;
         const test = document.getElementById(task.id).getElementsByTagName("td")[2];
@@ -110,10 +107,10 @@ class GuiHandler {
     }
 
     /*
-     * 
-     */
-    onRemoveButtonClick(event) {
-        let button = event.currentTarget;
+	 * Remove task
+	 */
+    removeTaskClick(e) {
+        let button = e.currentTarget;
         let tableRow = button.parentElement.parentElement;
         let taskName = tableRow.getElementsByTagName("td")[0].textContent;
         
@@ -128,12 +125,14 @@ class GuiHandler {
     }
 
     /*
-     * 
-     */
-    onUpdateStatus(event) {
-        let selector = event.currentTarget;
-        let taskName = selector.parentElement.parentElement.getElementsByTagName("td")[0].textContent;
-        let selectedValue = event.currentTarget.value;
+	 * Update task status
+	 */
+    updateTaskClick(e) {
+        let selector = e.currentTarget;
+        let selectedValue = e.currentTarget.value;
+    	let taskName = selector.parentElement.parentElement.getElementsByTagName("td")[0].textContent;
+
+
         
         let choice = confirm("Set " + taskName + " to " + selectedValue + "?");
         if (choice) {
@@ -144,8 +143,8 @@ class GuiHandler {
     }
     
     /*
-     * 
-     */
+	 * Checks how many tasks you have and view it in the view
+	 */
     noTask = () => {
         let tbody = document.getElementById("tbody");
         let count = tbody.rows.length;
