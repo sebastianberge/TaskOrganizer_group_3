@@ -1,5 +1,15 @@
-class TaskBox {
+"use strict";
 
+/*
+This class enables use of the addTask Modal, it shows a modal when initialized and called with show().
+It has a callback function that will be used when a task is added. Set this like t.onsubmit = x
+The constructor can take in two arguments, an array of statuses, and an onsubmit callback function.
+ */
+
+class TaskBox {
+	/*
+	 * Constructor, 
+	 */
     constructor(statuses, onsubmit) {
         if (arguments.length > 0) {
             this._allstatuses = statuses;
@@ -8,9 +18,11 @@ class TaskBox {
             this._allstatuses = [];
             this._onsubmit = null;
         }
+        
         let addTaskButton = document.getElementById("addTaskButton");
-        addTaskButton.addEventListener("click", () => this.submit(), true);
         let span = document.getElementsByClassName("close")[0];
+        
+        addTaskButton.addEventListener("click", () => this.submit(), true);
         span.addEventListener("click", () => this.close(), true);
 
     }
@@ -27,15 +39,19 @@ class TaskBox {
         this._onsubmit = o;
     }
 
+    /*
+     * Function for closing the task box
+     */
     close() {
         let m = document.getElementById("taskbox");
         m.style.display = "none";
     }
 
+    /*
+     * Function for showing the task box
+     */
     show() {
-        // Get the modal
         let modal = document.getElementById("taskbox");
-
         let select = document.getElementById("modalStatuses");
 
         if (!select.hasChildNodes()) {
@@ -45,15 +61,17 @@ class TaskBox {
                 select.appendChild(el);
             }
         }
-
-        // Show the modal.
         modal.style.display = "block";
     }
 
+    /*
+     * 
+     */
     submit() {
         let title = document.getElementById("taskInput").value;
         let select = document.getElementById("modalStatuses");
         let status = select.options[select.selectedIndex].value;
+
         let task = new Task(title, status);
         this._onsubmit(task)
     }
