@@ -28,9 +28,7 @@ class GuiHandler {
             if (task.status === status) {
                 disb = ` disabled=""`;
             }
-            tekstloop += `
-            <option value="${status}"${disb}>${status}</option>
-            `;
+            tekstloop += ` <option value="${status}"${disb}>${status}</option>`;
         }
         tekstloop += `</select>`;
         
