@@ -44,7 +44,7 @@ gui.deleteTaskCallback = async (id) =>{
                 	console.log("Deleted the task with ID: " + data.id);
                     gui.removeTask(id);
                 }else{
-                	console.log("Could not delete the task")
+                	console.log("Could not delete the task!");
                 }
             })
     } catch (error) {
@@ -70,7 +70,7 @@ const setup = async () => {
                             gui.allstatuses.push(el);
                         })
                     } else {
-                        console.log("No response from the fetch");
+                        console.log("No response from the fetch!");
                     }
             });
         
@@ -89,7 +89,7 @@ const setup = async () => {
                         gui.tasks.push(el);
                     })
                 }else {
-                    console.log("No response from the fetch");
+                    console.log("No response from the fetch!");
                 }
             });
         
@@ -99,7 +99,7 @@ const setup = async () => {
         gui.tasks.forEach((task) => {
             gui.showTask(task);
         });
-        console.log("Finished loading all of the tasks")
+        console.log("Finished loading all of the tasks!")
 
     } catch (error) {
         console.log(error);
@@ -109,7 +109,7 @@ const setup = async () => {
 	 * Runs the function noTask for viewing how many tasks there is
 	 */
     gui.noTask();
-    console.log("Finished up the setup process");
+    console.log("Finished up the setup process!");
 }
 
 /*
@@ -150,10 +150,10 @@ const tasknewbutton = document.getElementById("newTask");
 taskbox.allstatuses = gui.allstatuses;
 taskbox.onsubmit = addNewTask;
 tasknewbutton.addEventListener("click", () => {
-    taskbox.show()
+    taskbox.show();
 }, true);
 
 /*
- * Runs the getServerData when you refresh the page.
+ * Runs the setup when you load the page.
  */
 window.addEventListener("load", setup);
