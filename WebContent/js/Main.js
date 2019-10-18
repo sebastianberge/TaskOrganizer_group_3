@@ -1,5 +1,8 @@
 "use strict"
 
+/**
+ * Creating GuiHandler and TaskBox objects.
+ */
 const gui = new GuiHandler();
 const taskbox = new TaskBox();
 
@@ -59,7 +62,8 @@ gui.deleteTaskCallback = async (id) => {
 };
 
 /**
- * Setup.
+ * fetches allstatuses and the task list and uses a for-loop in the gui class to
+ * show the tasks.
  * 
  * @async
  */
@@ -107,21 +111,23 @@ const setup = async () => {
             });
         
         /**
-		 * For loop to view all of the tasks.
-		 * 
-		 * @async
+		 * For-loop going through every task adding it to the html page.
 		 */
         gui.tasks.forEach((task) => {
             gui.showTask(task);
         });
+        
         console.log("Finished loading all of the tasks!");
-
+        
     } catch (error) {
+    	
         console.log(error);
+    
     }  
     
     /**
-	 * Runs the function noTask for viewing how many tasks there is.
+	 * Runs the function noTask for viewing how many tasks there is in the viewd
+	 * list
 	 * 
 	 * @async
 	 */
@@ -160,7 +166,8 @@ const addNewTask = async (task) => {
 };
 
 /**
- * TaskBox handling
+ * TaskBox handling. Fetching the html elements. Adding statuses and onsubmit to
+ * taskbox. And event listener to the new task button for showing the task box.
  */
 const tasksmodaleboxdiv = document.getElementById("taskbox");
 const tasknewbutton = document.getElementById("newTask");
@@ -170,6 +177,6 @@ taskbox.onsubmit = addNewTask;
 tasknewbutton.addEventListener("click", () => taskbox.show(), true);
 
 /**
- * Runs the setup when you load the page.
+ * Runs the setup when the page load.
  */
 window.addEventListener("load", setup);

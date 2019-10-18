@@ -12,10 +12,16 @@ class GuiHandler {
         this.newStatusCallbackArray = [];
     }
 
+    /**
+	 * 
+	 */
     set deleteTaskCallback(f) {
         this.deleteTaskCallbackArray.push(f);
     }
-
+    
+    /**
+	 * 
+	 */
     set newStatusCallback(f) {
         this.newStatusCallbackArray.push(f);
     }
@@ -30,20 +36,21 @@ class GuiHandler {
 		 */
         let tekstloop = `<select class="select-element">
         <option value="0" selected="">&lt;Modify&gt;</option>`;
+        
         for (const status of this.allstatuses) {
             let disb = ``;
-            if (task.status === status) {
-                disb = ` disabled=""`;
-            }
-            tekstloop += ` <option value="${status}"${disb}>${status}</option>`;
-        }
+            if (task.status === status) {     	
+                disb = ` disabled=""`;             
+            }            
+            tekstloop += ` <option value="${status}"${disb}>${status}</option>`;            
+        }        
         tekstloop += `</select>`;
         
     	/**
 		 * Creating and fetching elements from/to tasks.html
 		 */
         let tr = document.createElement("tr");
-        
+     
         let td1 = document.createElement("td");
         let td2 = document.createElement("td");
         let td3 = document.createElement("td");
@@ -72,9 +79,6 @@ class GuiHandler {
         tr.appendChild(td3);
         tr.appendChild(td4);
 
-        /**
-		 * Puts the newest task on the top.
-		 */
         tbody.insertBefore(tr, tbody.childNodes[0]);
         
         /**
