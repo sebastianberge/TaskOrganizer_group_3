@@ -1,6 +1,8 @@
 "use strict"
 
 const gui = new GuiHandler();
+const taskbox = new TaskBox();
+
 
 /**
  * Changes the status using ajax.
@@ -161,7 +163,6 @@ const addNewTask = async (task) => {
  * TaskBox handling
  */
 const tasksmodaleboxdiv = document.getElementById("taskbox");
-const taskbox = new TaskBox(tasksmodaleboxdiv);
 const tasknewbutton = document.getElementById("newTask");
 
 taskbox.allstatuses = gui.allstatuses;

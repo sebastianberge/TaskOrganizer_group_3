@@ -6,47 +6,33 @@ class TaskBox {
 	/**
 	 * 
 	 */
-    constructor(statuses, onsubmit) {
-       
-    	/**
-		 * Fetches elements from tasks.html
-		 */
+    constructor() {
     	 let addTaskButtonElement = document.getElementById("addTaskButton");
          let spanElement = document.getElementsByClassName("close")[0];
          
-     	/**
-		 * Eventlisteners on for closing and submiting
-		 */
          addTaskButtonElement.addEventListener("click", () => this.submit(), true);
          spanElement.addEventListener("click", () => this.close(), true);
-         
-	         
-	     if (arguments.length == 0) {
-	    	 this._allstatuses = [];
-	         this._onsubmit = null;
-	         
-	     } else {
-	    	 this._allstatuses = statuses;
-	         this._onsubmit = onsubmit; 
-	     }
+
+	     this._allstatuses = [];
+	     this._onsubmit = null;	     
     }
 
     /**
-	 * 
+	 * All statuses getter
 	 */
     get allstatuses() {
         return this._allstatuses;
     }
 
     /**
-	 * 
+	 * All statuses setter
 	 */
     set allstatuses(s) {
         this._allstatuses = s;
     }
 
     /**
-	 * 
+	 * Submit setter
 	 */
     set onsubmit(o) {
         this._onsubmit = o;
