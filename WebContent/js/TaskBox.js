@@ -7,24 +7,28 @@ class TaskBox {
 	 * 
 	 */
     constructor(statuses, onsubmit) {
-        if (arguments.length == 0) {
-        	  this._allstatuses = [];
-              this._onsubmit = null;
+       
+    	/**
+		 * Fetches elements from tasks.html
+		 */
+    	 let addTaskButtonElement = document.getElementById("addTaskButton");
+         let spanElement = document.getElementsByClassName("close")[0];
          
-        } else {
-        	   this._allstatuses = statuses;
-               this._onsubmit = onsubmit; 
-        }
-        
-        let addTaskButtonElement = document.getElementById("addTaskButton");
-        let spanElement = document.getElementsByClassName("close")[0];
-        
-        /**
+     	/**
 		 * Eventlisteners on for closing and submiting
 		 */
-        addTaskButtonElement.addEventListener("click", () => this.submit(), true);
-        spanElement.addEventListener("click", () => this.close(), true);
-
+         addTaskButtonElement.addEventListener("click", () => this.submit(), true);
+         spanElement.addEventListener("click", () => this.close(), true);
+         
+	         
+	     if (arguments.length == 0) {
+	    	 this._allstatuses = [];
+	         this._onsubmit = null;
+	         
+	     } else {
+	    	 this._allstatuses = statuses;
+	         this._onsubmit = onsubmit; 
+	     }
     }
 
     /**
@@ -47,15 +51,11 @@ class TaskBox {
     set onsubmit(o) {
         this._onsubmit = o;
     }
-
-
  
-    
     /**
 	 * Function for showing the task box
 	 */
     show() {
-        let modalElement = document.getElementById("taskbox");
         let selectElement = document.getElementById("modalStatuses");
 
         if (!selectElement.hasChildNodes()) {
@@ -65,6 +65,8 @@ class TaskBox {
                 selectElement.appendChild(el);
             }
         }
+        
+        let modalElement = document.getElementById("taskbox");
         modalElement.style.display = "block";
     }
     
@@ -77,8 +79,12 @@ class TaskBox {
         let select = document.getElementById("modalStatuses");
         let statusInput = select.options[select.selectedIndex].value;
         
-        let task = new Task(titleInput, statusInput);
-        this._onsubmit(task)
+        if(titleInput !== ""){
+	        let task = new Task(titleInput, statusInput);
+	        this._onsubmit(task)
+        } else {
+        	alert("The input can't be empty!");
+        }
     }
     
     /**
