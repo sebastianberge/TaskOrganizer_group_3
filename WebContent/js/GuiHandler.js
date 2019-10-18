@@ -2,6 +2,9 @@
 
 class GuiHandler {
 
+	/**
+	 * 
+	 */
     constructor() {
         this.tasks = [];
         this.allstatuses = [];
@@ -17,10 +20,14 @@ class GuiHandler {
         this.newStatusCallbackArray.push(f);
     }
 
-    /*
+    /**
 	 * Shows all tasks using a forEach loop in Main.js
 	 */
     showTask = (task) => {
+    	
+        /**
+		 * 
+		 */
         let tekstloop = `<select class="select-element">
         <option value="0" selected="">&lt;Modify&gt;</option>`;
         for (const status of this.allstatuses) {
@@ -32,14 +39,15 @@ class GuiHandler {
         }
         tekstloop += `</select>`;
         
-        /*
+    	/**
 		 * Creating and fetching elements from/to tasks.html
 		 */
         let tr = document.createElement("tr");
+        
         let td1 = document.createElement("td");
         let td2 = document.createElement("td");
         let td3 = document.createElement("td");
-        let td4 = document.createElement("td")
+        let td4 = document.createElement("td");
         
         let tableButton = document.createElement("button");
         let tbody = document.getElementById("tbody");
@@ -64,38 +72,25 @@ class GuiHandler {
         tr.appendChild(td3);
         tr.appendChild(td4);
 
-        /*
-		 * 
+        /**
+		 * Puts the newest task on the top.
 		 */
         tbody.insertBefore(tr, tbody.childNodes[0]);
+        
+        /**
+		 * On click listener for removing and updating the selected task.
+		 */
         removeButton[0].addEventListener("click", this.removeTaskClick);
         selectors[0].addEventListener("change", this.updateTaskClick)
         
-        /*
+        /**
 		 * Fetches and shows how many tasks there are in the table
 		 */
         this.noTask();
     };
     
-    /*
-	 * Update task
-	 */
-    updateTask = (task) => {
-        document.getElementById(task.id).getElementsByTagName("td")[1].innerHTML = task.status;
-        const test = document.getElementById(task.id).getElementsByTagName("td")[2];
-        test.querySelector(".select-element").value = "0";
-        const optionEl = test.getElementsByTagName("option");
-        for (let i = 0; i < optionEl.length; i++) {
-            if (optionEl[i].value === task.status) {
-                optionEl[i].disabled = true;
-            } else {
-                optionEl[i].disabled = false;
-            }
-        }
 
-    }
-
-    /*
+    /**
 	 * Remove task
 	 */
     removeTaskClick(e) {
@@ -113,16 +108,14 @@ class GuiHandler {
         
     }
 
-    /*
+    /**
 	 * Update task status
 	 */
     updateTaskClick(e) {
         let selector = e.currentTarget;
         let selectedValue = e.currentTarget.value;
     	let taskName = selector.parentElement.parentElement.getElementsByTagName("td")[0].textContent;
-
-
-        
+    
         let choice = confirm("Set " + taskName + " to " + selectedValue + "?");
         if (choice) {
             gui.newStatusCallbackArray.forEach((x) => x(selector.parentElement.parentElement.id, selectedValue))
@@ -131,7 +124,7 @@ class GuiHandler {
         }
     }
     
-    /*
+    /**
 	 * Remove task from view
 	 */
     removeTask = (id) => {
@@ -140,7 +133,24 @@ class GuiHandler {
         this.noTask();
     };
     
-    /*
+    /**
+	 * Update task status in the view.
+	 */
+    updateTask = (task) => {
+        document.getElementById(task.id).getElementsByTagName("td")[1].innerText = task.status;
+        const test = document.getElementById(task.id).getElementsByTagName("td")[2];
+        test.querySelector(".select-element").value = "0";
+        const optionEl = test.getElementsByTagName("option");
+        for (let i = 0; i < optionEl.length; i++) {
+            if (optionEl[i].value === task.status) {
+                optionEl[i].disabled = true;
+            } else {
+                optionEl[i].disabled = false;
+            }
+        }
+    }
+    
+    /**
 	 * Checks how many tasks you have and view it in the view
 	 */
     noTask = () => {
@@ -148,9 +158,9 @@ class GuiHandler {
         let count = tbody.rows.length;
 
         if (count === 0) {
-            document.getElementById("message").innerHTML = "Waiting for server data.";
+            document.getElementById("message").innerText = "Waiting for server data.";
         } else {
-            document.getElementById("message").innerHTML = "Found " + count + " tasks.";
+            document.getElementById("message").innerText = "Found " + count + " tasks.";
         }
     }
 }

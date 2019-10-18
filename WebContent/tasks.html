@@ -8,16 +8,16 @@
 </head>
 <body>
 
-	<!-- The message div, will either show an error, or how many tasks are in the list -->
+	<!-- The message div, will either show an error, or how many tasks there are in the list -->
 	<div id="message">
-		<p></p>
+		<p>Waiting for server data.</p>
 	</div>
 	<!--*******************************************************************************-->
 
 
-	<!-- The new task button div, is disabled by default -->
+	<!-- The new task button div, is disabled by default. It will open the task box when clicked -->
 	<div id="newTaskButton">
-		<button disabled id="newTask" type="button">New task</button>
+		<button id="newTask" type="button" disabled>New task</button>
 	</div>
 	<!--*******************************************************************************-->
 
@@ -42,7 +42,7 @@
 			<table>
 				<tr>
 					<th>Title:</th>
-					<td><input id="taskInput" maxlength="35" size="25" type="text" /></td>
+					<td><input id="taskInput" size="25" maxlength="35" type="text" /></td>
 				</tr>
 				<tr>
 					<th>Status:</th>

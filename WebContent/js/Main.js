@@ -2,8 +2,10 @@
 
 const gui = new GuiHandler();
 
-/*
- * Changes the status using ajax
+/**
+ * Changes the status using ajax.
+ * 
+ * @async
  */
 gui.newStatusCallback = async (id,newStatus) => {
     const url = '../TaskServices/broker/task/' + id;
@@ -25,10 +27,12 @@ gui.newStatusCallback = async (id,newStatus) => {
     }
 };
 
-/*
- * Deletes a task with the use of ajax
+/**
+ * Deletes a task with the use of ajax.
+ * 
+ * @async
  */
-gui.deleteTaskCallback = async (id) =>{
+gui.deleteTaskCallback = async (id) => {
     try {
         await fetch('../TaskServices/broker/task/' + id, {
             method: "DELETE",
@@ -52,13 +56,18 @@ gui.deleteTaskCallback = async (id) =>{
     }
 };
 
-/*
- * Setting up
+/**
+ * Setup.
+ * 
+ * @async
  */
 const setup = async () => {
     try {
-    	/*
-		 * Fetches all the statuses using ajax
+    	
+    	/**
+		 * Fetches all the statuses using ajax.
+		 * 
+		 * @async
 		 */
         await fetch('../TaskServices/broker/allstatuses')
             .then(resolve =>{
@@ -74,8 +83,10 @@ const setup = async () => {
                     }
             });
         
-        /*
-		 * Fetches all of the saved tasks using ajax
+        /**
+		 * Fetches all of the saved tasks using ajax.
+		 * 
+		 * @async
 		 */
         await fetch('../TaskServices/broker/tasklist')
             .then(resolve =>{
@@ -93,27 +104,33 @@ const setup = async () => {
                 }
             });
         
-        /*
-		 * for loop to view all of the tasks
+        /**
+		 * For loop to view all of the tasks.
+		 * 
+		 * @async
 		 */
         gui.tasks.forEach((task) => {
             gui.showTask(task);
         });
-        console.log("Finished loading all of the tasks!")
+        console.log("Finished loading all of the tasks!");
 
     } catch (error) {
         console.log(error);
     }  
     
-    /*
-	 * Runs the function noTask for viewing how many tasks there is
+    /**
+	 * Runs the function noTask for viewing how many tasks there is.
+	 * 
+	 * @async
 	 */
     gui.noTask();
     console.log("Finished up the setup process!");
 }
 
-/*
- * Adds a new task using ajax
+/**
+ * Adds a new task using ajax.
+ * 
+ * @async
  */
 const addNewTask = async (task) => {
     
@@ -140,7 +157,7 @@ const addNewTask = async (task) => {
     }
 };
 
-/*
+/**
  * TaskBox handling
  */
 const tasksmodaleboxdiv = document.getElementById("taskbox");
@@ -149,11 +166,9 @@ const tasknewbutton = document.getElementById("newTask");
 
 taskbox.allstatuses = gui.allstatuses;
 taskbox.onsubmit = addNewTask;
-tasknewbutton.addEventListener("click", () => {
-    taskbox.show();
-}, true);
+tasknewbutton.addEventListener("click", () => taskbox.show(), true);
 
-/*
+/**
  * Runs the setup when you load the page.
  */
 window.addEventListener("load", setup);

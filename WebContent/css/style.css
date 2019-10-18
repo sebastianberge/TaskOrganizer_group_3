@@ -1,12 +1,21 @@
+/*
+ * Styling on the body  
+ */
 body {
 	background-color: white;
 }
 
+/*
+ * Styling on the table  
+ */
 table {
 	border: 1px solid black;
 	border-radius: 5px;
 }
 
+/*
+ * Styling on the modal task box  
+ */
 .modal, #taskbox {
 	display: none;
 	position: fixed;
@@ -20,6 +29,9 @@ table {
 	background-color: rgba(0, 0, 0, 0.4);
 }
 
+/*
+ * Styling on the modal content  
+ */
 .modal-content {
 	background-color: #fefefe;
 	margin: 15% auto;
@@ -28,6 +40,9 @@ table {
 	width: 80%;
 }
 
+/*
+ * Styling on the x button   
+ */
 .close {
 	color: #aaa;
 	float: right;
@@ -35,6 +50,9 @@ table {
 	font-weight: bold;
 }
 
+/*
+ * Styling on the x button  
+ */
 .close:hover, .close:focus {
 	color: black;
 	text-decoration: none;
