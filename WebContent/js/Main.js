@@ -3,8 +3,8 @@
 /**
  * Creating GuiHandler and TaskBox objects.
  */
-const gui = new GuiHandler();
 const taskbox = new TaskBox();
+const gui = new GuiHandler();
 
 
 /**
