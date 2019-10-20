@@ -166,8 +166,8 @@ const addNewTask = async (task) => {
 };
 
 /**
- * TaskBox handling. Fetching the html elements. Adding statuses and onsubmit to
- * taskbox. And event listener to the new task button for showing the task box.
+ * TaskBox handling. Fetching the html elements. Adding statuses and on submit to
+ * task box. And event listener to the new task button for showing the task box.
  */
 const tasksmodaleboxdiv = document.getElementById("taskbox");
 const tasknewbutton = document.getElementById("newTask");

@@ -8,8 +8,8 @@ class GuiHandler {
     constructor() {
         this.tasks = [];
         this.allstatuses = [];
-        this.deleteTaskCallbackArray = [];
         this.newStatusCallbackArray = [];
+        this.deleteTaskCallbackArray = [];
     }
     
     /**
@@ -75,8 +75,8 @@ class GuiHandler {
         let td3 = document.createElement("td");
         let td4 = document.createElement("td");
         
-        let tableButton = document.createElement("button");
         let tbody = document.getElementById("tbody");
+        let tableButton = document.createElement("button");
         let removeButton = document.getElementsByClassName('removebtn');
         let selectors = document.getElementsByClassName('selectelement');
 
