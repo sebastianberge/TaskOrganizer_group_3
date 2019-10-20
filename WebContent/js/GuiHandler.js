@@ -101,7 +101,7 @@ class GuiHandler {
     /**
 	 * Remove task
 	 */
-    removeTaskClick(e) {
+    removeTaskClick = (e) => {
         let button = e.currentTarget;
         let tableRow = button.parentElement.parentElement;
         let taskName = tableRow.getElementsByTagName("td")[0].textContent;
@@ -118,7 +118,7 @@ class GuiHandler {
     /**
 	 * This code is run if there is a change in the selector element.
 	 */
-    updateTaskClick(e) {
+    updateTaskClick = (e) => {
         let selector = e.currentTarget;
         let selectedValue = e.currentTarget.value;
     	let taskName = selector.parentElement.parentElement.getElementsByTagName("td")[0].textContent;
