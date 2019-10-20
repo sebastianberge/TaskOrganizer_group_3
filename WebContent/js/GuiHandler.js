@@ -118,7 +118,7 @@ class GuiHandler {
         let choice = confirm("Delete task " + taskName + "?");
         
         if(choice){
-        	 gui.deleteTaskCallbackArray.forEach((x) => x(tableRow.id))    
+        	 this.deleteTaskCallbackArray.forEach((x) => x(tableRow.id))    
         } else {
         	console.log("You just cancelled to delete a task!");
         } 
@@ -136,7 +136,7 @@ class GuiHandler {
         
         if (choice) {
         	console.log(gui.newStatusCallbackArray)
-            gui.newStatusCallbackArray.forEach((x) => x(selector.parentElement.parentElement.id, selectedValue))
+            this.newStatusCallbackArray.forEach((x) => x(selector.parentElement.parentElement.id, selectedValue))
         } else {
         	console.log("You just cancelled to update a task status!");
         }
