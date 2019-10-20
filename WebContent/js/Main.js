@@ -114,7 +114,7 @@ const setup = async () => {
 		 * For-loop going through every task adding it to the html page.
 		 */
         gui.tasks.forEach((task) => {
-            gui.showTask(task);
+            gui.view(task);
         });
         
         console.log("Finished loading all of the tasks!");
@@ -158,7 +158,7 @@ const addNewTask = async (task) => {
                 status: data.task.status
             };
             console.log("The task " + resultTask.title + " was added!");
-            gui.showTask(resultTask);
+            gui.view(resultTask);
         });
     } catch (error) {
         console.log(error);

@@ -45,12 +45,12 @@ class GuiHandler {
     /**
 	 * Shows all tasks using a forEach loop in Main.js
 	 */
-    showTask = task => {
+    view = task => {
  
     	let select = document.createElement("select");
         let option = document.createElement("option");
 
-    	select.setAttribute("class", "select-element");
+    	select.setAttribute("class", "selectelement");
         option.setAttribute("value", "0");
         option.setAttribute("selected", "");
         option.innerText = "<MODIFY>";
@@ -58,12 +58,12 @@ class GuiHandler {
         
         for (const status of this.allstatuses) {
         	let opt = document.createElement("option");
-            opt.setAttribute("value", `${status}`);
+            opt.setAttribute("value", status);
             let disb = ``;
             if (task.status === status) {     	
                 opt.setAttribute("disabled", "");
             }            
-            opt.innerText = `${status}`;
+            opt.innerText = status;
             select.appendChild(opt);          
         }        
        
@@ -77,8 +77,8 @@ class GuiHandler {
         
         let tableButton = document.createElement("button");
         let tbody = document.getElementById("tbody");
-        let removeButton = document.getElementsByClassName('remove-btn');
-        let selectors = document.getElementsByClassName('select-element');
+        let removeButton = document.getElementsByClassName('removebtn');
+        let selectors = document.getElementsByClassName('selectelement');
 
         tr.setAttribute("id", task.id);
     
@@ -86,7 +86,7 @@ class GuiHandler {
         td2.textContent = task.status;
         td3.appendChild(select);
         
-        tableButton.setAttribute("class", "remove-btn");
+        tableButton.setAttribute("class", "removebtn");
         tableButton.setAttribute("type", "button");
         tableButton.setAttribute("id", "rbtn");
         tableButton.textContent = "Remove";
