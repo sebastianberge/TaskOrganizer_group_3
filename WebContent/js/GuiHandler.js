@@ -99,7 +99,8 @@ class GuiHandler {
         tr.appendChild(td4);
 
         tbody.insertBefore(tr, tbody.childNodes[0]);
-        
+
+   
         removeButton[0].addEventListener("click", this.removeTaskClick);
         selectors[0].addEventListener("change", this.updateTaskClick)
         
@@ -135,7 +136,7 @@ class GuiHandler {
         let choice = confirm("Set " + taskName + " to " + selectedValue + "?");
         
         if (choice) {
-        	console.log(gui.newStatusCallbackArray)
+        	console.log(this.newStatusCallbackArray)
             this.newStatusCallbackArray.forEach((x) => x(selector.parentElement.parentElement.id, selectedValue))
         } else {
         	console.log("You just cancelled to update a task status!");
@@ -158,12 +159,14 @@ class GuiHandler {
 	 */
     updateTask = (task) => {
     	const node = document.getElementById(task.id);
+    	
 		if(task.title != null){
 			node.getElementsByTagName('td')[0].innerText = task.title;
 		}
 		console.log('ID er: ' + task.id);
 		const select = document.getElementById(task.id).getElementsByTagName('select')[0];
 		const status = select.options[select.selectedIndex].value;		
+		
 			if(status != 0){
 				node.getElementsByTagName('td')[1].innerText = status;
 			}
@@ -177,8 +180,9 @@ class GuiHandler {
 	 * Checks how many tasks you have and view it in the view
 	 */
     noTask = () => {
-        let tbody = document.getElementById("tbody");
-        let count = tbody.rows.length;
+    	//Fetches the table and gets the amount of rows
+        let table = document.getElementById("tbody");
+        let count = table.rows.length;
 
         if (count === 0) {
             document.getElementById("message").innerText = "Waiting for server data.";
