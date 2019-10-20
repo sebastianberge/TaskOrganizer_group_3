@@ -47,17 +47,26 @@ class GuiHandler {
 	 */
     showTask = task => {
  
-        let tekstloop = `<select class="select-element">
-        <option value="0" selected="">&lt;Modify&gt;</option>`;
+    	let select = document.createElement("select");
+        let option = document.createElement("option");
+
+    	select.setAttribute("class", "select-element");
+        option.setAttribute("value", "0");
+        option.setAttribute("selected", "");
+        option.innerText = "<MODIFY>";
+        select.appendChild(option);
         
         for (const status of this.allstatuses) {
+        	let opt = document.createElement("option");
+            opt.setAttribute("value", `${status}`);
             let disb = ``;
             if (task.status === status) {     	
-                disb = ` disabled=""`;             
+                opt.setAttribute("disabled", "");
             }            
-            tekstloop += ` <option value="${status}"${disb}>${status}</option>`;            
+            opt.innerText = `${status}`;
+            select.appendChild(opt);          
         }        
-        tekstloop += `</select>`;
+       
         
         let tr = document.createElement("tr");
      
@@ -75,7 +84,7 @@ class GuiHandler {
     
         td1.textContent = task.title;
         td2.textContent = task.status;
-        td3.innerHTML = tekstloop;
+        td3.appendChild(select);
         
         tableButton.setAttribute("class", "remove-btn");
         tableButton.setAttribute("type", "button");
