@@ -62,7 +62,7 @@ gui.deleteTaskCallback = async (id) => {
 };
 
 /**
- * fetches allstatuses and the task list and uses a for-loop in the gui class to
+ * Fetches allstatuses and the task list and uses a for-loop in the gui class to
  * show the tasks.
  * 
  * @async
@@ -116,7 +116,6 @@ const setup = async () => {
         gui.tasks.forEach((task) => {
             gui.view(task);
         });
-        
         console.log("Finished loading all of the tasks!");
         
     } catch (error) {

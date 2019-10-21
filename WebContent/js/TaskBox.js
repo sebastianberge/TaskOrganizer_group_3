@@ -4,8 +4,8 @@
 class TaskBox {
 	
 	/**
-	 * @param {List} Allstatuses
-	 * @param {Function} Onsubmit
+	 * @param {List} allstatuses
+	 * @param {Function} onsubmit
 	 * 			
 	 */
     constructor() {
