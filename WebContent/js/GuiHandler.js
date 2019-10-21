@@ -3,8 +3,12 @@
 class GuiHandler {
 
 	/**
-	 * 
+	 * @param {list} Tasks
+	 * @param {list} Allstatuses
+	 * @param {list} newStatusCallbackArray
+	 * @param {list} deleteTaskCallbackArray
 	 */
+	
     constructor() {
         this.tasks = [];
         this.allstatuses = [];
