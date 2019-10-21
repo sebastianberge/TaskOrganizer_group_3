@@ -4,7 +4,9 @@
 class TaskBox {
 	
 	/**
-	 * 
+	 * @param {List} Allstatuses
+	 * @param {Function} Onsubmit
+	 * 			
 	 */
     constructor() {
     	 let addTaskButtonElement = document.getElementById("addTaskButton");
